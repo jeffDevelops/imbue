@@ -1,0 +1,35 @@
+{
+  "name": "@imbuejs/core",
+  "version": "1.0.1",
+  "description": "Core components and utilities for Imbue Design System",
+  "main": "build",
+  "files": [
+    "build"
+  ],
+  "types": "./index.d.ts",
+  "publishConfig": {
+    "directory": "dist"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "rm -rf ./build && ./node_modules/.bin/rollup -c",
+    "local:help": "echo 'Run this script before testing the library in an example project. Builds the library, copies the package.json to the build folder, removes existing yarn link, and links to the build folder so that imports work like they will in production'",
+    "local": "yarn build && cp ./package.json ./build/ && rm -rf ~/.config/yarn/link && cd build && yarn link",
+    "prepublish": "yarn build"
+  },
+  "author": "jeffDevelops",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/react": "^17.0.0",
+    "@types/react-dom": "^17.0.0",
+    "@types/styled-components": "^5.1.7",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "rollup": "^2.35.1",
+    "rollup-plugin-peer-deps-external": "^2.2.4",
+    "rollup-plugin-terser": "^7.0.2",
+    "rollup-plugin-typescript2": "^0.29.0",
+    "styled-components": "^5.2.1",
+    "typescript": "^4.1.3"
+  }
+}
