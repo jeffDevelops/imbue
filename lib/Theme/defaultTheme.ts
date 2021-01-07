@@ -1,3 +1,4 @@
+import Color from 'color'
 import { Theme, Globals } from './types'
 // import Color from 'color'
 
@@ -198,13 +199,13 @@ export const defaultTheme: Theme & Globals = {
     color: '#536071',
     fontFamily: 'system, sans-serif',
     fontSize: '14px',
-    kerning: '1px',
+    kerning: '1.25px',
     fontWeight: '600',
   },
   textInput: {
     placeholderColor: '#AAC1D0',
     color: '#536071',
-    border: '1px solid #DCE3FD',
+    border: '1px solid #EEF5FF',
     fontFamily: 'system, sans-serif',
     fontSize: '16px',
     kerning: '1px',
@@ -213,7 +214,7 @@ export const defaultTheme: Theme & Globals = {
   panel: {
     backgroundColor: '#F6FAFD',
     foregroundColor: '#4f565e',
-    outlineColor: '#DCE3FD',
+    outlineColor: '#EEF5FF',
     padding: '32px 40px',
   },
   button: {
@@ -369,6 +370,132 @@ export const defaultTheme: Theme & Globals = {
     fontWeight: '800',
     outline: 'none',
     cursor: 'pointer',
+  },
+  checkbox: {
+    boxShadow: [
+      {
+        xOffset: '1px',
+        yOffset: '3px',
+        blurRadius: '8px',
+        spreadRadius: '0px',
+        color: '#CEE5F2',
+      },
+    ],
+    backgroundColor: '#FFFFFA',
+    size: '36px',
+    borderRadius: '6px',
+    border: '2px solid #D4DBF5',
+    padding: '0',
+    transform: 'none',
+    transition: [
+      {
+        transitionProperty: 'background-color',
+        transitionDuration: '0.1s',
+        transitionTimingFunction: 'ease-out',
+      },
+      {
+        transitionProperty: 'box-shadow',
+        transitionDuration: '0.1s',
+        transitionTimingFunction: 'ease-out',
+      },
+      {
+        transitionProperty: 'transform',
+        transitionDuration: '0.1s',
+        transitionTimingFunction: 'ease-out',
+      },
+    ],
+    label: {
+      padding: '8px 0',
+      margin: '0 0 0 16px',
+    },
+    iconStyles: {
+      fill: 'rgba(0, 0, 0, 0)',
+      stroke: '#536071',
+      height: '20px',
+      width: '20px',
+    },
+    hover: {
+      backgroundColor: '#F6FDFF',
+      transform: 'none',
+      transition: [
+        {
+          transitionProperty: 'transform',
+          transitionDuration: '0.3s',
+          transitionTimingFunction: 'ease-in',
+        },
+        {
+          transitionProperty: 'background-color',
+          transitionDuration: '0.3s',
+          transitionTimingFunction: 'ease-in',
+        },
+      ],
+    },
+    clicked: {
+      transition: [
+        {
+          transitionProperty: 'box-shadow',
+          transitionDuration: '0.3s',
+          transitionTimingFunction: 'ease-in',
+        },
+      ],
+      boxShadow: [
+        {
+          xOffset: '0',
+          yOffset: '0',
+          blurRadius: '0',
+          spreadRadius: '0',
+          color: '#CEE5F200',
+          inset: false,
+        },
+      ],
+    },
+    checked: {
+      transition: [
+        {
+          transitionProperty: 'box-shadow',
+          transitionDuration: '0.3s',
+          transitionTimingFunction: 'ease-in',
+        },
+      ],
+      boxShadow: [
+        {
+          xOffset: '1px',
+          yOffset: '3px',
+          blurRadius: '7px',
+          spreadRadius: '0px',
+          color: '#CEE5F2',
+          inset: true,
+        },
+      ],
+    },
+    disabled: {
+      opacity: 0.75,
+      backgroundColor: '#FFFFFA',
+      cursor: 'not-allowed',
+      boxShadow: [
+        {
+          xOffset: '0',
+          yOffset: '0',
+          blurRadius: '0',
+          spreadRadius: '0',
+          color: 'rgba(0, 0, 0, 0)',
+        },
+      ],
+      transition: [
+        {
+          transitionProperty: 'box-shadow',
+          transitionDuration: '0.3s',
+          transitionTimingFunction: 'ease-in',
+        },
+      ],
+      iconStyles: {
+        fill: 'rgba(0, 0, 0, 0)',
+        stroke: '#536071',
+        height: '20px',
+        width: '20px',
+        opacity: 0.75,
+      },
+    },
   },
   // drawer: {
   //   handle: {

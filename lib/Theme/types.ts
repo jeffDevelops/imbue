@@ -3,9 +3,62 @@ import { BoxShadow } from '../utility/BoxShadow/types'
 import { Transition } from '../utility/Transition/types'
 import { BoxModel } from '../utility/BoxModel/types'
 import { FontFace } from '../utility/FontFace/types'
+import { Color } from '../utility/Color/types'
+import { Cursor } from '../utility/Cursor/types'
 
 // Components
+
 // import { DrawerStyles, HandleStyles } from '../_types/components/Drawer'
+
+export interface CheckboxStyles {
+  boxShadow: BoxShadow
+  backgroundColor: Color | string
+  border: string
+  borderRadius: string
+  size: string
+  padding: string
+  transform: string
+  transition: Transition
+  /** An SVG icon converted to ReactComponent (See https://www.npmjs.com/package/convert-svg-react) */
+  icon?: () => JSX.Element
+  label: {
+    padding: string
+    margin: string
+  }
+  iconStyles: {
+    fill: string
+    stroke: string
+    height: string
+    width: string
+  }
+  hover: {
+    backgroundColor: string
+    transition: Transition
+    transform: string
+  }
+  clicked: {
+    boxShadow: BoxShadow
+    transition: Transition
+  }
+  checked: {
+    boxShadow: BoxShadow
+    transition: Transition
+  }
+  disabled: {
+    opacity: number
+    backgroundColor: string
+    transition: Transition
+    cursor: Cursor
+    boxShadow: BoxShadow
+    iconStyles: {
+      fill: string
+      stroke: string
+      height: string
+      width: string
+      opacity: number
+    }
+  }
+}
 
 export interface TextStyles {
   fontFamily: string
@@ -89,6 +142,8 @@ export interface Theme {
   palette: Palette
   borderRadius: string
   boxShadow: BoxShadowConfig
+
+  checkbox: CheckboxStyles
 
   h1: TypographyStyles
   h2: TypographyStyles

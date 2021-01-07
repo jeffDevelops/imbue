@@ -1,6 +1,7 @@
 import styled, { css } from 'styled-components'
 import { StyledPanelAccentBorderProps } from './types'
 import { Theme } from '../../Theme/types'
+import { determineColor } from '../../utility/Color/determineColor'
 
 export const styles = (
   p: StyledPanelAccentBorderProps & { theme: Theme },
@@ -21,37 +22,8 @@ export const styles = (
       ? '100%'
       : p.theme.borderRadius
   };
-  background-color: ${(() => {
-    if ('hierarchy' in p && 'meaning' in p) {
-      throw new Error(
-        'Volatile Error: Button cannot be defined with both hierarchy and meaning.',
-      )
-    }
-
-    if ('hierarchy' in p) {
-      switch (p.hierarchy) {
-        case 'primary':
-          return p.theme.palette.primary.value
-        case 'secondary':
-          return p.theme.palette.secondary.value
-        case 'tertiary':
-          return p.theme.palette.tertiary.value
-        case 'quaternary':
-          return p.theme.palette.quaternary.value
-      }
-    }
-
-    if ('meaning' in p) {
-      switch (p.meaning) {
-        case 'success':
-          return p.theme.palette.success.value
-        case 'warning':
-          return p.theme.palette.warning.value
-        case 'danger':
-          return p.theme.palette.danger.value
-      }
-    }
-  })()};
+  background-color: ${determineColor(p)};
+  transition: background-color .3s;
 `
 
 export const StyledPanelAccentBorder = styled.div<

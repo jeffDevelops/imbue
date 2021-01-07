@@ -206,7 +206,7 @@ export const defaultDarkTheme: Theme = {
     border: '1px solid #DCE3FD',
     fontFamily: 'system, sans-serif',
     fontSize: '16px',
-    kerning: '1px',
+    kerning: '1.25px',
     fontWeight: '600',
   },
   panel: {
@@ -368,6 +368,132 @@ export const defaultDarkTheme: Theme = {
     fontWeight: '800',
     outline: 'none',
     cursor: 'pointer',
+  },
+  checkbox: {
+    boxShadow: [
+      {
+        xOffset: '0px',
+        yOffset: '3px',
+        blurRadius: '3px',
+        spreadRadius: '0px',
+        color: '#161421',
+      },
+    ],
+    backgroundColor: 'transparent',
+    border: '2px solid #2F363E',
+    size: '36px',
+    borderRadius: '6px',
+    padding: '0',
+    transform: 'none',
+    transition: [
+      {
+        transitionProperty: 'background-color',
+        transitionDuration: '0.2s',
+        transitionTimingFunction: 'ease-out',
+      },
+    ],
+    label: {
+      padding: '8px 0',
+      margin: '0 0 0 16px',
+    },
+    iconStyles: {
+      fill: 'rgba(0, 0, 0, 0)',
+      stroke: '#FFFFFA',
+      height: '20px',
+      width: '20px',
+    },
+    hover: {
+      backgroundColor: '#363A3D',
+      transform: 'none',
+      transition: [
+        {
+          transitionProperty: 'transform',
+          transitionDuration: '0.3s',
+          transitionTimingFunction: 'ease-in',
+        },
+        {
+          transitionProperty: 'background-color',
+          transitionDuration: '0.3s',
+          transitionTimingFunction: 'ease-in',
+        },
+      ],
+    },
+    clicked: {
+      boxShadow: [
+        {
+          xOffset: '0',
+          yOffset: '0',
+          blurRadius: '0',
+          spreadRadius: '0',
+          color: '#CEE5F200',
+          inset: false,
+        },
+      ],
+      transition: [
+        {
+          transitionProperty: 'background-color',
+          transitionDuration: '0.3s',
+          transitionTimingFunction: 'ease-in',
+        },
+        {
+          transitionProperty: 'box-shadow',
+          transitionDuration: '0.3s',
+          transitionTimingFunction: 'ease-in',
+        },
+      ],
+    },
+    checked: {
+      boxShadow: [
+        {
+          xOffset: '1px',
+          yOffset: '3px',
+          blurRadius: '7px',
+          spreadRadius: '0px',
+          color: '#161421',
+          inset: true,
+        },
+      ],
+      transition: [
+        {
+          transitionProperty: 'background-color',
+          transitionDuration: '0.3s',
+          transitionTimingFunction: 'ease-in',
+        },
+        {
+          transitionProperty: 'box-shadow',
+          transitionDuration: '0.3s',
+          transitionTimingFunction: 'ease-in',
+        },
+      ],
+    },
+    disabled: {
+      opacity: 0.75,
+      backgroundColor: '#222324',
+      cursor: 'not-allowed',
+      boxShadow: [
+        {
+          xOffset: '0',
+          yOffset: '0',
+          blurRadius: '0',
+          spreadRadius: '0',
+          color: 'rgba(0, 0, 0, 0)',
+        },
+      ],
+      transition: [
+        {
+          transitionProperty: 'opacity',
+          transitionDuration: '.3s',
+          transitionTimingFunction: 'ease-in',
+        },
+      ],
+      iconStyles: {
+        fill: 'rgba(0, 0, 0, 0)',
+        stroke: '#536071',
+        height: '20px',
+        width: '20px',
+        opacity: 0.75,
+      },
+    },
   },
   // drawer: {
   //   handle: {

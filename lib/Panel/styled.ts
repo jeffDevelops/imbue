@@ -6,7 +6,6 @@ import { getCSSForBoxShadow } from '../utility/BoxShadow/getCSSForBoxShadow'
 export const styles = (
   p: StyledPanelProps & { theme: Theme },
 ) => {
-  console.log({ p })
   return css`
   position: relative; /* relative positioning for abolutely positioned PanelBorder ornaments */
   overflow: hidden;

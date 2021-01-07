@@ -19,13 +19,7 @@ Imbue does not expose class names!
 
 ## Usage
 
-All components and utilities are available as named exports from `@imbuejs/core` as in
-
-```
-import { Button, TextInput } from '@imbuejs/core'
-```
-
-But, to achieve the smallest possible bundle sizes for your application, you'll rather want to take only what you need:
+To achieve the smallest possible bundle sizes for your application, default import only what you need:
 
 ```
 import Button from '@imbuejs/core/Button'
@@ -34,8 +28,7 @@ import TextInput from '@imbuejs/core/TextInput'
 
 ## Contributing
 
-You'll want to use `yarn` as your package manager. The scripts to symlink the project locally all rely on yarn, and you cannot mix and match local
-symlinks between package managers.
+If you'd like to contribute to the Imbue project, you'll want to use `yarn` as your package manager. The scripts to symlink the project locally all rely on yarn, and you cannot mix and match local symlinks between package managers.
 
 Fork the repo.
 

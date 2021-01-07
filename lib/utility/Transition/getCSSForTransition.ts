@@ -1,6 +1,8 @@
 import { Transition } from './types'
 
-export const getCSSForTransition = (transition: Transition) => {
+export const getCSSForTransition = (
+  transition: Transition,
+) => {
   if (!transition || !transition.length) return 'none'
 
   // Bail if transition is of type 'unset' | 'initial' | 'inherit'
