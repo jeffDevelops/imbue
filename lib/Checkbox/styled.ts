@@ -5,10 +5,17 @@ import { determineColor } from '../utility/Color/determineColor'
 import { StyledCheckboxProps } from './types'
 import { styles as labelStyles } from '../Label/styled'
 import { Theme } from '../Theme/types'
-import { Color } from '../utility/Color/types'
+import {
+  HierarchicalColorOptions,
+  SemanticColorOptions,
+} from '../utility/Color/types'
 
 export const borderAnimationStyles = <
-  Props extends Color & { theme: Theme }
+  Props extends {
+    theme: Theme
+    hierarchy?: HierarchicalColorOptions
+    meaning?: SemanticColorOptions
+  }
 >(
   p: Props,
 ) => css`
@@ -89,6 +96,10 @@ export const CustomCheckbox = styled.div<
       p.disabled
         ? p.theme.checkbox.disabled.iconStyles
         : p.theme.checkbox.iconStyles.fill};
+    transition: ${p =>
+      getCSSForTransition(
+        p.theme.checkbox.iconStyles.transition,
+      )}
   }
 
   ${p =>
@@ -135,7 +146,9 @@ export const CustomCheckbox = styled.div<
     cursor: ${p.theme.checkbox.disabled.cursor};
     opacity: ${p.theme.checkbox.disabled.opacity};
     background-color: ${p.theme.checkbox.disabled.color};
-    transition: ${p.theme.checkbox.disabled.transition};
+    transition: ${getCSSForTransition(
+      p.theme.checkbox.disabled.transition,
+    )};
   `}
 `
 

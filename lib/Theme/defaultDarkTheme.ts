@@ -242,15 +242,15 @@ export const defaultDarkTheme: Theme = {
     transition: [
       {
         transitionProperty: 'box-shadow',
-        transitionDuration: '0.1s',
+        transitionDuration: '0.3s',
       },
       {
         transitionProperty: 'transform',
-        transitionDuration: '0.1s',
+        transitionDuration: '0.3s',
       },
       {
         transitionProperty: 'background-color',
-        transitionDuration: '0.1s',
+        transitionDuration: '0.3s',
       },
     ],
     hovered: {
@@ -279,15 +279,15 @@ export const defaultDarkTheme: Theme = {
       transition: [
         {
           transitionProperty: 'box-shadow',
-          transitionDuration: '0.2s',
+          transitionDuration: '0.3s',
         },
         {
           transitionProperty: 'transform',
-          transitionDuration: '0.2s',
+          transitionDuration: '0.3s',
         },
         {
           transitionProperty: 'background-color',
-          transitionDuration: '0.2s',
+          transitionDuration: '0.3s',
         },
       ],
     },
@@ -358,6 +358,56 @@ export const defaultDarkTheme: Theme = {
     borderWidth: '2px',
     borderStyle: 'solid',
     cursor: 'pointer',
+    transition: [
+      {
+        transitionProperty: 'transform',
+        transitionDuration: '0.3s',
+      },
+      {
+        transitionProperty: 'background-color',
+        transitionDuration: '0.3s',
+      },
+    ],
+    hovered: {
+      transform: 'scale(1.01)',
+      transition: [
+        {
+          transitionProperty: 'transform',
+          transitionDuration: '0.3s',
+        },
+        {
+          transitionProperty: 'background-color',
+          transitionDuration: '0.3s',
+        },
+        {
+          transitionProperty: 'color',
+          transitionDuration: '0.3s',
+        },
+      ],
+    },
+    clicked: {
+      transform: 'scale(1)',
+      transition: [
+        {
+          transitionProperty: 'transform',
+          transitionDuration: '0.3s',
+        },
+        {
+          transitionProperty: 'background-color',
+          transitionDuration: '0.3s',
+        },
+      ],
+    },
+    disabled: {
+      cursor: 'not-allowed',
+      opacity: 0.75,
+      transition: [
+        {
+          transitionProperty: 'opacity',
+          transitionDuration: '0.3s',
+        },
+      ],
+    },
   },
   textButton: {
     textTransform: 'none',
@@ -381,14 +431,19 @@ export const defaultDarkTheme: Theme = {
     ],
     backgroundColor: 'transparent',
     border: '2px solid #2F363E',
-    size: '36px',
+    size: '24px',
     borderRadius: '6px',
     padding: '0',
     transform: 'none',
     transition: [
       {
         transitionProperty: 'background-color',
-        transitionDuration: '0.2s',
+        transitionDuration: '0.3s',
+        transitionTimingFunction: 'ease-out',
+      },
+      {
+        transitionProperty: 'box-shadow',
+        transitionDuration: '0.3s',
         transitionTimingFunction: 'ease-out',
       },
     ],
@@ -399,8 +454,151 @@ export const defaultDarkTheme: Theme = {
     iconStyles: {
       fill: 'rgba(0, 0, 0, 0)',
       stroke: '#FFFFFA',
-      height: '20px',
-      width: '20px',
+      height: '14px',
+      width: '14px',
+      transition: [
+        {
+          transitionProperty: 'fill',
+          transitionDuration: '0.3s',
+          transitionTimingFunction: 'ease-in',
+        },
+        {
+          transitionProperty: 'stroke',
+          transitionDuration: '0.3s',
+          transitionTimingFunction: 'ease-in',
+        },
+      ],
+    },
+    hover: {
+      backgroundColor: '#363A3D',
+      transform: 'none',
+      transition: [
+        {
+          transitionProperty: 'transform',
+          transitionDuration: '0.3s',
+          transitionTimingFunction: 'ease-in',
+        },
+        {
+          transitionProperty: 'background-color',
+          transitionDuration: '0.3s',
+          transitionTimingFunction: 'ease-in',
+        },
+      ],
+    },
+    clicked: {
+      boxShadow: [
+        {
+          xOffset: '0',
+          yOffset: '0',
+          blurRadius: '0',
+          spreadRadius: '0',
+          color: '#CEE5F200',
+          inset: false,
+        },
+      ],
+      transition: [
+        {
+          transitionProperty: 'background-color',
+          transitionDuration: '0.3s',
+          transitionTimingFunction: 'ease-in',
+        },
+        {
+          transitionProperty: 'box-shadow',
+          transitionDuration: '0.3s',
+          transitionTimingFunction: 'ease-in',
+        },
+      ],
+    },
+    checked: {
+      boxShadow: [
+        {
+          xOffset: '1px',
+          yOffset: '3px',
+          blurRadius: '7px',
+          spreadRadius: '0px',
+          color: '#161421',
+          inset: true,
+        },
+      ],
+      transition: [
+        {
+          transitionProperty: 'background-color',
+          transitionDuration: '0.3s',
+          transitionTimingFunction: 'ease-in',
+        },
+        {
+          transitionProperty: 'box-shadow',
+          transitionDuration: '0.3s',
+          transitionTimingFunction: 'ease-in',
+        },
+      ],
+    },
+    disabled: {
+      opacity: 0.75,
+      backgroundColor: '#222324',
+      cursor: 'not-allowed',
+      boxShadow: [
+        {
+          xOffset: '0',
+          yOffset: '0',
+          blurRadius: '0',
+          spreadRadius: '0',
+          color: 'rgba(0, 0, 0, 0)',
+        },
+      ],
+      transition: [
+        {
+          transitionProperty: 'opacity',
+          transitionDuration: '.3s',
+          transitionTimingFunction: 'ease-in',
+        },
+        {
+          transitionProperty: 'box-shadow',
+          transitionDuration: '.3s',
+          transitionTimingFunction: 'ease-in',
+        },
+      ],
+      iconStyles: {
+        fill: 'rgba(0, 0, 0, 0)',
+        stroke: '#536071',
+        height: '20px',
+        width: '20px',
+        opacity: 0.75,
+      },
+    },
+  },
+  radioButton: {
+    color: '#FFFFFA',
+    boxShadow: [
+      {
+        xOffset: '0px',
+        yOffset: '3px',
+        blurRadius: '3px',
+        spreadRadius: '0px',
+        color: '#161421',
+      },
+    ],
+    backgroundColor: 'transparent',
+    border: '2px solid #2F363E',
+    size: '24px',
+    borderRadius: '50%',
+    padding: '0',
+    transform: 'none',
+    transition: [
+      {
+        transitionProperty: 'background-color',
+        transitionDuration: '0.3s',
+        transitionTimingFunction: 'ease-out',
+      },
+      {
+        transitionProperty: 'box-shadow',
+        transitionDuration: '0.3s',
+        transitionTimingFunction: 'ease-out',
+      },
+    ],
+    label: {
+      padding: '8px 0',
+      margin: '0 0 0 16px',
     },
     hover: {
       backgroundColor: '#363A3D',
