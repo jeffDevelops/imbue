@@ -1,30 +1,32 @@
-import { ChangeEvent, InputHTMLAttributes } from 'react'
 import {
-  SemanticColorOptions,
+  ChangeEvent,
+  InputHTMLAttributes,
+  ReactText,
+} from 'react'
+import {
   HierarchicalColorOptions,
+  SemanticColorOptions,
 } from '../utility/Color/types'
 
-export type StyledCheckboxProps = {
+export type StyledRadioProps = {
   meaning?: SemanticColorOptions
   hierarchy?: HierarchicalColorOptions
   checked: boolean
-  indeterminate?: boolean
   borderless?: boolean
   disabled?: boolean
+  value: ReactText
 }
 
-export type CheckboxProps = InputHTMLAttributes<
+export type RadioProps = InputHTMLAttributes<
   HTMLInputElement
 > & {
   meaning?: SemanticColorOptions
   hierarchy?: HierarchicalColorOptions
   htmlFor?: string
-  checked?: boolean
-  defaultChecked?: boolean
-  indeterminate?: boolean
+  checked: boolean
   label?: string
-  checkIcon?: () => JSX.Element
-  onChange?(e?: ChangeEvent<HTMLInputElement>): void
+  onChange(e?: ChangeEvent<HTMLInputElement>): void
   borderless?: boolean
   disabled?: boolean
+  value: ReactText
 }

@@ -1,11 +1,27 @@
-import { Color } from './types'
+import {
+  Color,
+  HierarchicalColorOptions,
+  SemanticColorOptions,
+} from './types'
 import { Theme } from '../../Theme/types'
 
 export const determineColor = <
-  Props extends Color & { theme: Theme }
+  Props extends {
+    theme: Theme
+    hierachy?: HierarchicalColorOptions
+    meaning?: SemanticColorOptions
+  }
 >(
-  p: Props & { theme: Theme },
+  p: Props & {
+    theme: Theme
+    hierarchy?: HierarchicalColorOptions
+    meaning?: SemanticColorOptions
+  },
 ) => {
+  if (!p.hierarchy && !p.meaning) {
+    return null
+  }
+
   if (
     'hierarchy' in p &&
     !!p.hierarchy &&
@@ -17,7 +33,7 @@ export const determineColor = <
     )
   }
 
-  if ('hierarchy' in p) {
+  if ('hierarchy' in p && p.hierarchy !== undefined) {
     switch (p.hierarchy) {
       case 'primary':
         return p.theme.palette.primary.value

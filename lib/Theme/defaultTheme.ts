@@ -244,15 +244,15 @@ export const defaultTheme: Theme & Globals = {
     transition: [
       {
         transitionProperty: 'box-shadow',
-        transitionDuration: '0.1s',
+        transitionDuration: '0.3s',
       },
       {
         transitionProperty: 'transform',
-        transitionDuration: '0.1s',
+        transitionDuration: '0.3s',
       },
       {
         transitionProperty: 'background-color',
-        transitionDuration: '0.1s',
+        transitionDuration: '0.3s',
       },
     ],
     hovered: {
@@ -281,15 +281,15 @@ export const defaultTheme: Theme & Globals = {
       transition: [
         {
           transitionProperty: 'box-shadow',
-          transitionDuration: '0.2s',
+          transitionDuration: '0.3s',
         },
         {
           transitionProperty: 'transform',
-          transitionDuration: '0.2s',
+          transitionDuration: '0.3s',
         },
         {
           transitionProperty: 'background-color',
-          transitionDuration: '0.2s',
+          transitionDuration: '0.3s',
         },
       ],
     },
@@ -382,7 +382,7 @@ export const defaultTheme: Theme & Globals = {
       },
     ],
     backgroundColor: '#FFFFFA',
-    size: '36px',
+    size: '24px',
     borderRadius: '6px',
     border: '2px solid #D4DBF5',
     padding: '0',
@@ -390,17 +390,17 @@ export const defaultTheme: Theme & Globals = {
     transition: [
       {
         transitionProperty: 'background-color',
-        transitionDuration: '0.1s',
+        transitionDuration: '0.3s',
         transitionTimingFunction: 'ease-out',
       },
       {
         transitionProperty: 'box-shadow',
-        transitionDuration: '0.1s',
+        transitionDuration: '0.3s',
         transitionTimingFunction: 'ease-out',
       },
       {
         transitionProperty: 'transform',
-        transitionDuration: '0.1s',
+        transitionDuration: '0.3s',
         transitionTimingFunction: 'ease-out',
       },
     ],
@@ -411,8 +411,20 @@ export const defaultTheme: Theme & Globals = {
     iconStyles: {
       fill: 'rgba(0, 0, 0, 0)',
       stroke: '#536071',
-      height: '20px',
-      width: '20px',
+      height: '16px',
+      width: '16px',
+      transition: [
+        {
+          transitionProperty: 'fill',
+          transitionDuration: '0.3s',
+          transitionTimingFunction: 'ease-in',
+        },
+        {
+          transitionProperty: 'stroke',
+          transitionDuration: '0.3s',
+          transitionTimingFunction: 'ease-in',
+        },
+      ],
     },
     hover: {
       backgroundColor: '#F6FDFF',
@@ -469,7 +481,7 @@ export const defaultTheme: Theme & Globals = {
       ],
     },
     disabled: {
-      opacity: 0.75,
+      opacity: 0.5,
       backgroundColor: '#FFFFFA',
       cursor: 'not-allowed',
       boxShadow: [
@@ -493,7 +505,128 @@ export const defaultTheme: Theme & Globals = {
         stroke: '#536071',
         height: '20px',
         width: '20px',
-        opacity: 0.75,
+        opacity: 0.5,
+      },
+    },
+  },
+  radioButton: {
+    boxShadow: [
+      {
+        xOffset: '1px',
+        yOffset: '3px',
+        blurRadius: '8px',
+        spreadRadius: '0px',
+        color: '#CEE5F2',
+      },
+    ],
+    color: '#536071',
+    backgroundColor: '#FFFFFA',
+    size: '24px',
+    borderRadius: '50%',
+    border: '2px solid #D4DBF5',
+    padding: '0',
+    transform: 'none',
+    transition: [
+      {
+        transitionProperty: 'background-color',
+        transitionDuration: '0.3s',
+        transitionTimingFunction: 'ease-out',
+      },
+      {
+        transitionProperty: 'box-shadow',
+        transitionDuration: '0.3s',
+        transitionTimingFunction: 'ease-out',
+      },
+      {
+        transitionProperty: 'transform',
+        transitionDuration: '0.3s',
+        transitionTimingFunction: 'ease-out',
+      },
+    ],
+    label: {
+      padding: '8px 0',
+      margin: '0 0 0 16px',
+    },
+    hover: {
+      backgroundColor: '#F6FDFF',
+      transform: 'none',
+      transition: [
+        {
+          transitionProperty: 'transform',
+          transitionDuration: '0.3s',
+          transitionTimingFunction: 'ease-in',
+        },
+        {
+          transitionProperty: 'background-color',
+          transitionDuration: '0.3s',
+          transitionTimingFunction: 'ease-in',
+        },
+      ],
+    },
+    clicked: {
+      transition: [
+        {
+          transitionProperty: 'box-shadow',
+          transitionDuration: '0.3s',
+          transitionTimingFunction: 'ease-in',
+        },
+      ],
+      boxShadow: [
+        {
+          xOffset: '0',
+          yOffset: '0',
+          blurRadius: '0',
+          spreadRadius: '0',
+          color: '#CEE5F200',
+          inset: false,
+        },
+      ],
+    },
+    checked: {
+      transition: [
+        {
+          transitionProperty: 'box-shadow',
+          transitionDuration: '0.3s',
+          transitionTimingFunction: 'ease-in',
+        },
+      ],
+      boxShadow: [
+        {
+          xOffset: '1px',
+          yOffset: '3px',
+          blurRadius: '7px',
+          spreadRadius: '0px',
+          color: '#CEE5F2',
+          inset: true,
+        },
+      ],
+    },
+    disabled: {
+      opacity: 0.5,
+      backgroundColor: '#FFFFFA',
+      cursor: 'not-allowed',
+      boxShadow: [
+        {
+          xOffset: '0',
+          yOffset: '0',
+          blurRadius: '0',
+          spreadRadius: '0',
+          color: 'rgba(0, 0, 0, 0)',
+        },
+      ],
+      transition: [
+        {
+          transitionProperty: 'box-shadow',
+          transitionDuration: '0.3s',
+          transitionTimingFunction: 'ease-in',
+        },
+      ],
+      iconStyles: {
+        fill: 'rgba(0, 0, 0, 0)',
+        stroke: '#536071',
+        height: '20px',
+        width: '20px',
+        opacity: 0.5,
       },
     },
   },

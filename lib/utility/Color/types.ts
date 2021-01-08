@@ -1,13 +1,28 @@
 import { StrictUnion } from '../../tsUtils/types/StrictUnion'
 
+export type HierarchicalColorOptions =
+  | 'primary'
+  | 'secondary'
+  | 'tertiary'
+  | 'quaternary'
+
+export type SemanticColorOptions =
+  | 'success'
+  | 'warning'
+  | 'danger'
+
 export type HierarchicalColor = {
-  hierarchy: 'primary' | 'secondary' | 'tertiary' | 'quaternary'
+  hierarchy: HierarchicalColorOptions
 }
 
 export type SemanticColor = {
-  meaning: 'success' | 'warning' | 'danger'
+  meaning: SemanticColorOptions
 }
 
 export type Color = StrictUnion<
   HierarchicalColor | SemanticColor
 >
+
+export type OptionalColor =
+  | StrictUnion<HierarchicalColor | SemanticColor>
+  | {}

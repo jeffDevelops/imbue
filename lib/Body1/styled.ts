@@ -13,7 +13,7 @@ export const styles = (p: { theme: Theme }) => css`
   margin-bottom: ${p => p.theme.body1.marginBottom};
   text-transform: ${p => p.theme.body1.textTransform};
 
-  &:last-of-type {
+  &:last-child {
     margin-bottom: 0;
   }
 `

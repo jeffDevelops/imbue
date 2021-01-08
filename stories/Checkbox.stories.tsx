@@ -18,6 +18,20 @@ export const Default = () =>
   withTheme(
     <Flex>
       <Flex column width="100px">
+        <Checkbox defaultChecked={true} />
+        <Checkbox borderless defaultChecked={true} />
+      </Flex>
+      <Flex column width="100px">
+        <Checkbox defaultChecked={false} />
+        <Checkbox borderless defaultChecked={false} />
+      </Flex>
+    </Flex>,
+  )
+
+export const HierarchyAndMeaning = () =>
+  withTheme(
+    <Flex>
+      <Flex column width="100px">
         <Checkbox
           defaultChecked={true}
           hierarchy="primary"
@@ -57,7 +71,6 @@ export const Default = () =>
         <Checkbox defaultChecked={true} meaning="success" />
         <Checkbox defaultChecked={true} meaning="warning" />
         <Checkbox defaultChecked={true} meaning="danger" />
-        <Checkbox defaultChecked={true} />
       </Flex>
       <Flex column width="100px">
         <Checkbox
@@ -69,11 +82,88 @@ export const Default = () =>
           meaning="warning"
         />
         <Checkbox defaultChecked={false} meaning="danger" />
-        <Checkbox defaultChecked={false} />
+      </Flex>
+      <Flex column width="100px">
+        <Checkbox
+          borderless
+          defaultChecked={true}
+          hierarchy="primary"
+        />
+        <Checkbox
+          borderless
+          defaultChecked={true}
+          hierarchy="secondary"
+        />
+        <Checkbox
+          borderless
+          defaultChecked={true}
+          hierarchy="tertiary"
+        />
+        <Checkbox
+          borderless
+          defaultChecked={true}
+          hierarchy="quaternary"
+        />
+      </Flex>
+      <Flex column width="100px">
+        <Checkbox
+          borderless
+          defaultChecked={false}
+          hierarchy="primary"
+        />
+        <Checkbox
+          borderless
+          defaultChecked={false}
+          hierarchy="secondary"
+        />
+        <Checkbox
+          borderless
+          defaultChecked={false}
+          hierarchy="tertiary"
+        />
+        <Checkbox
+          borderless
+          defaultChecked={false}
+          hierarchy="quaternary"
+        />
+      </Flex>
+      <Flex column width="100px">
+        <Checkbox
+          borderless
+          defaultChecked={true}
+          meaning="success"
+        />
+        <Checkbox
+          borderless
+          defaultChecked={true}
+          meaning="warning"
+        />
+        <Checkbox
+          borderless
+          defaultChecked={true}
+          meaning="danger"
+        />
+      </Flex>
+      <Flex column width="100px">
+        <Checkbox
+          borderless
+          defaultChecked={false}
+          meaning="success"
+        />
+        <Checkbox
+          borderless
+          defaultChecked={false}
+          meaning="warning"
+        />
+        <Checkbox
+          borderless
+          defaultChecked={false}
+          meaning="danger"
+        />
       </Flex>
     </Flex>,
   )
-export const DefaultWithLabels = () =>
+export const WithLabels = () =>
   withTheme(
     <Flex>
       <Flex column alignItems="flex-start" width="200px">
@@ -419,6 +509,9 @@ const DisabledExample = () => {
   const [secondIsDisabled, setSecondIsDisabled] = useState(
     true,
   )
+  const [fourthIsDisabled, setFourthIsDisabled] = useState(
+    false,
+  )
 
   return (
     <Flex column alignItems="flex-start" maxWidth="600px">
@@ -428,7 +521,6 @@ const DisabledExample = () => {
           A checkbox's disabled state is mutually exclusive
           from whether or not it is checked.
         </Body1>
-        <Flex height="32px" />
         <Flex column alignItems="flex-start" width="auto">
           <Flex justifyContent="flex-start">
             <Flex
@@ -467,6 +559,43 @@ const DisabledExample = () => {
                 setFirstIsDisabled(current => !current)
               }
               disabled={secondIsDisabled}
+            />
+          </Flex>
+
+          <Flex justifyContent="flex-start">
+            <Flex
+              justifyContent="flex-start"
+              margin="0 16px 0 0"
+            >
+              <Label htmlFor="fourth-disabled">
+                Fourth Is Disabled
+              </Label>
+            </Flex>
+            <Checkbox
+              id="fourth-disabled"
+              meaning="danger"
+              checked={fourthIsDisabled}
+              onChange={() =>
+                setFourthIsDisabled(current => !current)
+              }
+            />
+          </Flex>
+
+          <Flex justifyContent="flex-start">
+            <Flex
+              justifyContent="flex-start"
+              margin="0 16px 0 0"
+            >
+              <Label htmlFor="first-disabled">
+                I don't do anything in this example, but get
+                disabled
+              </Label>
+            </Flex>
+            <Checkbox
+              id="first-disabled"
+              meaning="warning"
+              defaultChecked={true}
+              disabled={fourthIsDisabled}
             />
           </Flex>
 

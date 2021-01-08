@@ -10,6 +10,49 @@ import { Cursor } from '../utility/Cursor/types'
 
 // import { DrawerStyles, HandleStyles } from '../_types/components/Drawer'
 
+export interface RadioStyles {
+  boxShadow: BoxShadow
+  color: string // color of the dot
+  backgroundColor: Color | string
+  border: string
+  borderRadius: string
+  size: string
+  padding: string
+  transform: string
+  transition: Transition
+  label: {
+    padding: string
+    margin: string
+  }
+  hover: {
+    backgroundColor: string
+    transition: Transition
+    transform: string
+  }
+  clicked: {
+    boxShadow: BoxShadow
+    transition: Transition
+  }
+  checked: {
+    boxShadow: BoxShadow
+    transition: Transition
+  }
+  disabled: {
+    opacity: number
+    backgroundColor: string
+    transition: Transition
+    cursor: Cursor
+    boxShadow: BoxShadow
+    iconStyles: {
+      fill: string
+      stroke: string
+      height: string
+      width: string
+      opacity: number
+    }
+  }
+}
+
 export interface CheckboxStyles {
   boxShadow: BoxShadow
   backgroundColor: Color | string
@@ -30,6 +73,7 @@ export interface CheckboxStyles {
     stroke: string
     height: string
     width: string
+    transition: Transition
   }
   hover: {
     backgroundColor: string
@@ -144,6 +188,7 @@ export interface Theme {
   boxShadow: BoxShadowConfig
 
   checkbox: CheckboxStyles
+  radioButton: RadioStyles
 
   h1: TypographyStyles
   h2: TypographyStyles

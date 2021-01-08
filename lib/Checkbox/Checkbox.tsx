@@ -128,7 +128,7 @@ function runRuntimeValidations(
     checked === undefined
   ) {
     throw new Error(
-      'Imbue error: Checkbox is missing either the `checked` prop or `defaultChecked` prop. To maintain the state of the checkbox yourself, opt for `checked` (controlled implementation). For the uncontrolled implementation, use `defaultCheked`.',
+      'Imbue error: Checkbox is missing either the `checked` prop or `defaultChecked` prop. To maintain the state of the checkbox yourself, opt for `checked` (controlled implementation). For the uncontrolled implementation, use `defaultChecked`.',
     )
   }
 
