@@ -360,6 +360,56 @@ export const defaultTheme: Theme & Globals = {
     borderWidth: '2px',
     borderStyle: 'solid',
     cursor: 'pointer',
+    transition: [
+      {
+        transitionProperty: 'transform',
+        transitionDuration: '0.3s',
+      },
+      {
+        transitionProperty: 'background-color',
+        transitionDuration: '0.3s',
+      },
+    ],
+    hovered: {
+      transform: 'scale(1.01)',
+      transition: [
+        {
+          transitionProperty: 'transform',
+          transitionDuration: '0.3s',
+        },
+        {
+          transitionProperty: 'background-color',
+          transitionDuration: '0.3s',
+        },
+        {
+          transitionProperty: 'color',
+          transitionDuration: '0.3s',
+        },
+      ],
+    },
+    clicked: {
+      transform: 'scale(1)',
+      transition: [
+        {
+          transitionProperty: 'transform',
+          transitionDuration: '0.3s',
+        },
+        {
+          transitionProperty: 'background-color',
+          transitionDuration: '0.3s',
+        },
+      ],
+    },
+    disabled: {
+      cursor: 'not-allowed',
+      opacity: 0.75,
+      transition: [
+        {
+          transitionProperty: 'opacity',
+          transitionDuration: '0.3s',
+        },
+      ],
+    },
   },
   textButton: {
     textTransform: 'none',

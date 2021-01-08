@@ -8,7 +8,7 @@ import { Theme } from '../../Theme/types'
 export const determineColor = <
   Props extends {
     theme: Theme
-    hierachy?: HierarchicalColorOptions
+    hierarchy?: HierarchicalColorOptions
     meaning?: SemanticColorOptions
   }
 >(
@@ -33,7 +33,7 @@ export const determineColor = <
     )
   }
 
-  if ('hierarchy' in p && p.hierarchy !== undefined) {
+  if ('hierarchy' in p) {
     switch (p.hierarchy) {
       case 'primary':
         return p.theme.palette.primary.value
@@ -61,10 +61,22 @@ export const determineColor = <
 }
 
 export const determineContrastColor = <
-  Props extends Color & { theme: Theme }
+  Props extends {
+    theme: Theme
+    hierachy?: HierarchicalColorOptions
+    meaning?: SemanticColorOptions
+  }
 >(
-  p: Props & { theme: Theme },
+  p: Props & {
+    theme: Theme
+    hierarchy?: HierarchicalColorOptions
+    meaning?: SemanticColorOptions
+  },
 ) => {
+  if (!p.hierarchy && !p.meaning) {
+    return null
+  }
+
   if ('hierarchy' in p && 'meaning' in p) {
     throw new Error(
       'Imbue Error: Button cannot be defined with both hierarchy and meaning.',

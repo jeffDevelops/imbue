@@ -208,15 +208,29 @@ export interface Theme {
   button: TextStyles &
     BoxModel &
     ButtonStyles & {
-      hovered: TextStyles & BoxModel & ButtonStyles
-      clicked: TextStyles & BoxModel & ButtonStyles
-      disabled: TextStyles & BoxModel & ButtonStyles
+      hovered: BoxModel & ButtonStyles
+      clicked: BoxModel & ButtonStyles
+      disabled: BoxModel & ButtonStyles
     }
   ghostButton: TextStyles &
     BoxModel &
     ButtonStyles & {
       borderWidth: string
       borderStyle: string
+
+      hovered: {
+        transform: string
+        transition: Transition
+      }
+      clicked: {
+        transform: string
+        transition: Transition
+      }
+      disabled: {
+        cursor: Cursor
+        opacity: number
+        transition: Transition
+      }
     }
   textButton: TextStyles & BoxModel & ButtonStyles
   // drawer: DrawerStyles
