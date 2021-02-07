@@ -1,9 +1,6 @@
 import React, { forwardRef, ReactNode } from 'react'
 import { StyledBody1 } from './styled'
-
-export interface Body1Props {
-  children: ReactNode
-}
+import { Body1Props } from './types'
 
 const Body1 = forwardRef<HTMLParagraphElement, Body1Props>(
   ({ children, ...props }: Body1Props, ref) => (
