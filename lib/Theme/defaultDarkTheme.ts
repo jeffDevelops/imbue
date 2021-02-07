@@ -418,6 +418,57 @@ export const defaultDarkTheme: Theme = {
     fontWeight: '800',
     outline: 'none',
     cursor: 'pointer',
+    hovered: {
+      transform: `scale(1.01)`,
+      transition: [
+        {
+          transitionProperty: 'background-color',
+          transitionDuration: '0.3s',
+        },
+        {
+          transitionProperty: 'transform',
+          transitionDuration: '0.3s',
+        },
+      ],
+    },
+    clicked: {
+      transform: `scale(1)`,
+      transition: [
+        {
+          transitionProperty: 'transform',
+          transitionDuration: '0.3s',
+        },
+      ],
+    },
+    disabled: {
+      cursor: 'not-allowed',
+      opacity: 0.75,
+      transition: [
+        {
+          transitionProperty: 'background-color',
+          transitionDuration: '0.3s',
+        },
+        {
+          transitionProperty: 'transform',
+          transitionDuration: '0.3s',
+        },
+      ],
+    },
+  },
+  link: {
+    transitionDisabled: false,
+    fontFamily: 'system, sans-serif',
+    fontSize: '14px',
+    fontWeight: '300',
+    kerning: '1px',
+    cursor: 'pointer',
+    hovered: {
+      borderWidth: '2px',
+      distanceFromText: '8px',
+    },
+    visited: {
+      color: '#62BFFF',
+    },
   },
   checkbox: {
     boxShadow: [
