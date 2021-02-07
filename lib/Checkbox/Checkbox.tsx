@@ -47,7 +47,7 @@ const Checkbox = forwardRef<
         : defaultChecked,
     )
 
-    const buttonColor = {
+    const color = {
       ...(props.meaning
         ? { meaning: props.meaning }
         : {
@@ -65,7 +65,7 @@ const Checkbox = forwardRef<
 
     return (
       <Label
-        {...buttonColor}
+        {...color}
         checked={isChecked}
         disabled={disabled}
         ref={ref}
@@ -84,10 +84,7 @@ const Checkbox = forwardRef<
               : onChange
           }
         />
-        <RelativeContext
-          {...buttonColor}
-          checked={isChecked}
-        >
+        <RelativeContext {...color} checked={isChecked}>
           <CustomCheckbox
             indeterminate={indeterminate}
             checked={isChecked}

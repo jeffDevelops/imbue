@@ -163,6 +163,7 @@ export const HierarchyAndMeaning = () =>
       </Flex>
     </Flex>,
   )
+
 export const WithLabels = () =>
   withTheme(
     <Flex>

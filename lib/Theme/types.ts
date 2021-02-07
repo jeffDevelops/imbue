@@ -232,6 +232,34 @@ export interface Theme {
         transition: Transition
       }
     }
-  textButton: TextStyles & BoxModel & ButtonStyles
+  textButton: TextStyles &
+    BoxModel &
+    ButtonStyles & {
+      hovered: {
+        transform: string
+        transition: Transition
+      }
+      clicked: {
+        transform: string
+        transition: Transition
+      }
+      disabled: {
+        cursor: Cursor
+        opacity: number
+        transition: Transition
+      }
+    }
+  link: TextStyles &
+    BoxModel & {
+      transitionDisabled?: boolean
+      cursor: Cursor
+      hovered: {
+        borderWidth: string
+        distanceFromText: string
+      }
+      visited: {
+        color: string
+      }
+    }
   // drawer: DrawerStyles
 }
