@@ -172,8 +172,6 @@ const Textarea = forwardRef<
       adjustHeightForText()
     }, [props.value])
 
-    console.log({ userDefinedMinHeight, textareaHeight })
-
     return (
       <Flex
         position="relative"
