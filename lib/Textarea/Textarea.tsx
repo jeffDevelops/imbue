@@ -100,10 +100,19 @@ const Textarea = forwardRef<
       if (combinedRef.current) {
         combinedRef.current.blur()
       }
-      window.addEventListener('mousemove', handleResize)
-      // Disable width transitions
-      setIsResizing(true)
-    }, [userDefinedMinHeight, textareaWidth])
+
+      if (resize?.direction !== 'none' || !!resize) {
+        window.addEventListener('mousemove', handleResize)
+        // Disable width transitions
+        setIsResizing(true)
+      }
+    }, [userDefinedMinHeight, textareaWidth, resize])
+
+    // 3) On mouseup, cancel the resize listener
+    const removeResizeListener = () => {
+      setIsResizing(false)
+      window.removeEventListener('mousemove', handleResize)
+    }
 
     // Initialize the height and width on mount, as soon as the height and width are known
     useLayoutEffect(() => {
@@ -122,12 +131,6 @@ const Textarea = forwardRef<
         )
       }
     }, [])
-
-    // 3) On mouseup, cancel the resize listener
-    const removeResizeListener = () => {
-      setIsResizing(false)
-      window.removeEventListener('mousemove', handleResize)
-    }
 
     // Set the color based on which props are passed
     let color: Color | {} = {}
@@ -154,13 +157,22 @@ const Textarea = forwardRef<
 
       if (!hasBeenResized) {
         setTextareaHeight('auto', () => {
-          const newHeight = `${
-            current.scrollHeight + paddingTop
-          }px`
-          setTextareaHeight(newHeight)
+          if (combinedRef.current) {
+            const newHeight = `${
+              combinedRef.current.scrollHeight + paddingTop
+            }px`
+            setTextareaHeight(newHeight)
+            setUserDefinedMinHeight(newHeight)
+          }
         })
       }
     }, [hasBeenResized])
+
+    useLayoutEffect(() => {
+      adjustHeightForText()
+    }, [props.value])
+
+    console.log({ userDefinedMinHeight, textareaHeight })
 
     return (
       <Flex
@@ -178,6 +190,7 @@ const Textarea = forwardRef<
           isResizing={isResizing}
           width={textareaWidth}
           height={textareaHeight}
+          error={props.error}
           {...color}
         >
           <StyledTextarea
@@ -191,11 +204,11 @@ const Textarea = forwardRef<
             })()}
             minHeight={(() => {
               if (typeof resize === 'boolean') return 'none'
-              return resize?.minHeight || 'none'
+              return resize?.minHeight || '0'
             })()}
             minWidth={(() => {
               if (typeof resize === 'boolean') return 'none'
-              return resize?.minWidth || 'none'
+              return resize?.minWidth || '0'
             })()}
             resize={resize?.direction || 'none'}
             width={textareaWidth}
@@ -203,8 +216,12 @@ const Textarea = forwardRef<
             onChange={(
               e: ChangeEvent<HTMLTextAreaElement>,
             ) => {
-              props.onChange && props.onChange(e)
-              adjustHeightForText()
+              e.persist()
+              if (props.onChange) {
+                props.onChange(e)
+              } else {
+                adjustHeightForText()
+              }
             }}
             onMouseDown={handlePotentialResize}
             onMouseUp={removeResizeListener}

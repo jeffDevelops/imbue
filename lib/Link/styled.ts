@@ -24,7 +24,7 @@ export const borderAnimationStyles = <
     width: 0;
     background-color: ${determineColor(p) ||
     p.theme.palette.primary.value};
-    height: 2px;
+    height: 1px;
     z-index: 0;
     border-radius: ${`0 0 ${p.theme.checkbox.borderRadius} ${p.theme.checkbox.borderRadius}`};
     transition: width ease-out 0.2s;

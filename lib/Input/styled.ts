@@ -3,6 +3,7 @@ import { getCSSForBoxShadow } from '../utility/BoxShadow/getCSSForBoxShadow'
 import { Theme } from '../Theme/types'
 import { InputProps } from './types'
 import { determineColor } from '../utility/Color/determineColor'
+import { styles as body1Styles } from '../Body1/styled'
 
 export const borderAnimationStyles = (
   p: InputProps & { theme: Theme },
@@ -49,6 +50,7 @@ export const RelativeContext = styled.div<InputProps>`
 export const styles = (
   p: InputProps & { theme: Theme },
 ) => css<InputProps>`
+  ${body1Styles}
   position: relative;
   z-index: 1;
   background-color: ${p.theme.palette.background};
@@ -70,6 +72,7 @@ export const styles = (
   padding: 8px 12px;
   transition: box-shadow 0.2s;
   width: 100%;
+  margin-bottom:0;
 
   &:focus {
     box-shadow: ${getCSSForBoxShadow(
@@ -79,6 +82,7 @@ export const styles = (
   }
 
   &::placeholder {
+    ${body1Styles}
     color: ${p.theme.textInput.placeholderColor};
   }
 `
