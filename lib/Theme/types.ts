@@ -202,6 +202,7 @@ export interface Theme {
   textInput: TypographyStyles & {
     placeholderColor: string
     border?: string
+    height: string
   }
   panel: PanelConfig
 
