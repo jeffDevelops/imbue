@@ -65,6 +65,9 @@ export const styles = (
   min-width: ${p => p.minWidth};
   max-height: ${p => p.maxHeight};
   min-height: ${p => p.minHeight};
+
+  ${body1Styles}
+
   position: relative;
   z-index: 1;
   background-color: ${p.theme.palette.background};
@@ -81,12 +84,11 @@ export const styles = (
   font-size: ${p.theme.textInput.fontSize};
   color: ${p.theme.textInput.color};
   letter-spacing: ${p.theme.textInput.kerning};
-  height: 56px;
   outline: none;
   padding: 8px 12px;
   transition: box-shadow 0.2s;
 
-  ${body1Styles}
+  margin-bottom: 0;
 
   &:focus {
     box-shadow: ${getCSSForBoxShadow(

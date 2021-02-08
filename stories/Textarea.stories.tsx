@@ -69,7 +69,7 @@ const ErrorStateExample = () => {
   const [state, setState] = useState('')
 
   return (
-    <Flex column width="300px">
+    <Flex column width="300px" justifyContent="flex-start">
       <Textarea
         value={state}
         onChange={(
