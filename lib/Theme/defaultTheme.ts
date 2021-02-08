@@ -1,6 +1,5 @@
 import Color from 'color'
 import { Theme, Globals } from './types'
-// import Color from 'color'
 
 export const defaultTheme: Theme & Globals = {
   fontFaces: [
@@ -209,7 +208,8 @@ export const defaultTheme: Theme & Globals = {
     fontFamily: 'system, sans-serif',
     fontSize: '16px',
     kerning: '1px',
-    fontWeight: '600',
+    fontWeight: '400',
+    height: '48px',
   },
   panel: {
     backgroundColor: '#F6FAFD',

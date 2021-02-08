@@ -1,5 +1,4 @@
 import { Theme } from './types'
-// import Color from 'color'
 
 export const defaultDarkTheme: Theme = {
   fontFaces: [
@@ -28,7 +27,7 @@ export const defaultDarkTheme: Theme = {
         yOffset: '2px',
         blurRadius: '6px',
         spreadRadius: '0',
-        color: '#161421',
+        color: '#13111d',
       },
     ],
     defaultInset: [
@@ -37,7 +36,7 @@ export const defaultDarkTheme: Theme = {
         yOffset: '2px',
         blurRadius: '6px',
         spreadRadius: '0',
-        color: '#161421',
+        color: '#13111d',
         inset: true,
       },
     ],
@@ -47,7 +46,7 @@ export const defaultDarkTheme: Theme = {
         yOffset: '3px',
         blurRadius: '3px',
         spreadRadius: '0px',
-        color: '#161421',
+        color: '#13111d',
       },
     ],
     pronouncedInset: [
@@ -56,7 +55,7 @@ export const defaultDarkTheme: Theme = {
         yOffset: '3px',
         blurRadius: '7px',
         spreadRadius: '0px',
-        color: '#161421',
+        color: '#13111d',
         inset: true,
       },
     ],
@@ -201,13 +200,14 @@ export const defaultDarkTheme: Theme = {
     fontWeight: '600',
   },
   textInput: {
-    placeholderColor: '#AAC1D0',
-    color: '#637081',
+    placeholderColor: '#637081',
+    color: '#F6FAFD',
     border: '1px solid #DCE3FD',
     fontFamily: 'system, sans-serif',
     fontSize: '16px',
     kerning: '1.25px',
-    fontWeight: '600',
+    fontWeight: '400',
+    height: '48px',
   },
   panel: {
     backgroundColor: '#262A2D',
@@ -273,7 +273,7 @@ export const defaultDarkTheme: Theme = {
           yOffset: '3px',
           blurRadius: '3px',
           spreadRadius: '0px',
-          color: '#161421',
+          color: '#13111d',
         },
       ],
       transition: [
@@ -477,7 +477,7 @@ export const defaultDarkTheme: Theme = {
         yOffset: '3px',
         blurRadius: '3px',
         spreadRadius: '0px',
-        color: '#161421',
+        color: '#13111d',
       },
     ],
     backgroundColor: 'transparent',
@@ -567,7 +567,7 @@ export const defaultDarkTheme: Theme = {
           yOffset: '3px',
           blurRadius: '7px',
           spreadRadius: '0px',
-          color: '#161421',
+          color: '#13111d',
           inset: true,
         },
       ],
@@ -626,7 +626,7 @@ export const defaultDarkTheme: Theme = {
         yOffset: '3px',
         blurRadius: '3px',
         spreadRadius: '0px',
-        color: '#161421',
+        color: '#13111d',
       },
     ],
     backgroundColor: 'transparent',
@@ -698,7 +698,7 @@ export const defaultDarkTheme: Theme = {
           yOffset: '3px',
           blurRadius: '7px',
           spreadRadius: '0px',
-          color: '#161421',
+          color: '#13111d',
           inset: true,
         },
       ],

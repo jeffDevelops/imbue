@@ -1,6 +1,5 @@
 import React, { FC, forwardRef } from 'react'
 import Label from '../Label/Label'
-import { LabelProps } from '../Label/types'
 import Flex from '../Flex/Flex'
 import {
   RelativeContext,
@@ -9,10 +8,7 @@ import {
 } from './styled'
 import { InputProps } from './types'
 
-const TextInput: FC<InputProps> = forwardRef<
-  HTMLInputElement,
-  InputProps
->(
+const TextInput = forwardRef<HTMLInputElement, InputProps>(
   (
     { LabelProps, label, margin, id, ...props }: InputProps,
     ref,
