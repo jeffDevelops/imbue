@@ -4503,6 +4503,13 @@ execa@^1.0.0:
     signal-exit "^3.0.0"
     strip-eof "^1.0.0"
 
+executioner@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/executioner/-/executioner-2.0.1.tgz#add328e03bc45dd598f358fbb529fc0be0ec6fcd"
+  integrity sha1-rdMo4DvEXdWY81j7tSn8C+Dsb80=
+  dependencies:
+    mixly "^1.0.0"
+
 expand-brackets@^2.1.4:
   version "2.1.4"
   resolved "https://registry.yarnpkg.com/expand-brackets/-/expand-brackets-2.1.4.tgz#b77735e315ce30f6b6eff0f83b04151a22449622"
@@ -4921,6 +4928,11 @@ fsevents@~2.1.2:
   version "2.1.3"
   resolved "https://registry.yarnpkg.com/fsevents/-/fsevents-2.1.3.tgz#fb738703ae8d2f9fe900c33836ddebee8b97f23e"
   integrity sha512-Auw9a4AxqWpa9GUfj370BMPzzyncfBABW8Mab7BGWBYDj4Isgq+cDKtx0i6u9jcX9pQDnswsaaOTgTmA5pEjuQ==
+
+fulcon@^1.0.1:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/fulcon/-/fulcon-1.0.2.tgz#8a4dfda4c73fcd9cc62a79d5045c392b45547320"
+  integrity sha1-ik39pMc/zZzGKnnVBFw5K0VUcyA=
 
 function-bind@^1.1.1:
   version "1.1.1"
@@ -5575,6 +5587,14 @@ inquirer@^7.0.0:
     string-width "^4.1.0"
     strip-ansi "^6.0.0"
     through "^2.3.6"
+
+install-peers-cli@^2.2.0:
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/install-peers-cli/-/install-peers-cli-2.2.0.tgz#f76f1ec8ac9fa7f920c05743e011554edad85f8d"
+  integrity sha512-scSNvF49HDOLNm2xLFwST23g/OvfsceiA087bcGBgZP/ZNCrvpSaCn5IrWNZ2XYmFFykXF/6J1Zgm+D/JgRgtA==
+  dependencies:
+    commander "^2.20.0"
+    executioner "^2.0.1"
 
 internal-slot@^1.0.2:
   version "1.0.2"
@@ -6637,6 +6657,13 @@ mixin-deep@^1.2.0:
     for-in "^1.0.2"
     is-extendable "^1.0.1"
 
+mixly@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/mixly/-/mixly-1.0.0.tgz#9b5a2e1f63e6dfba0d30e6797ffae62ab1dc24ef"
+  integrity sha1-m1ouH2Pm37oNMOZ5f/rmKrHcJO8=
+  dependencies:
+    fulcon "^1.0.1"
+
 mkdirp@^0.5.1, mkdirp@^0.5.3:
   version "0.5.5"
   resolved "https://registry.yarnpkg.com/mkdirp/-/mkdirp-0.5.5.tgz#d91cefd62d1436ca0f41620e251288d420099def"
@@ -7680,7 +7707,7 @@ react-docgen@^5.0.0:
     node-dir "^0.1.10"
     strip-indent "^3.0.0"
 
-react-dom@^17.0.1:
+react-dom@>=16.8:
   version "17.0.1"
   resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-17.0.1.tgz#1de2560474ec9f0e334285662ede52dbc5426fc6"
   integrity sha512-6eV150oJZ9U2t9svnsspTMrWNyHc6chX0KzDeAOXftRa8bNeOKTTfCJ7KorIwenkHd2xqVTBTCZd79yk/lx/Ug==
@@ -7808,14 +7835,6 @@ react-textarea-autosize@^8.1.1:
     "@babel/runtime" "^7.10.2"
     use-composed-ref "^1.0.0"
     use-latest "^1.0.0"
-
-react@^17.0.1:
-  version "17.0.1"
-  resolved "https://registry.yarnpkg.com/react/-/react-17.0.1.tgz#6e0600416bd57574e3f86d92edba3d9008726127"
-  integrity sha512-lG9c9UuMHdcAexXtigOZLX8exLWkW0Ku29qPRU8uhF2R9BN96dLCt0psvzPLlHc5OWkgymP3qwTRgbnw5BKx3w==
-  dependencies:
-    loose-envify "^1.1.0"
-    object-assign "^4.1.1"
 
 reactcss@^1.2.0:
   version "1.2.3"

@@ -731,20 +731,20 @@ export const defaultTheme: Theme & Globals = {
       },
     },
   },
-  // drawer: {
-  //   handle: {
-  //     cursorX: 'ew-resize',
-  //     cursorY: 'ns-resize',
-  //     backgroundColor: Color(globals.palette.panelBackground)
-  //       .darken(0.5)
-  //       .alpha(0.3)
-  //       .toString(),
-  //     relativeLength: '30%',
-  //     maxLength: '300px',
-  //     minLength: '18px',
-  //     thickness: '6px',
-  //   },
-  // },
+  drawer: {
+    handle: {
+      cursorX: 'ew-resize',
+      cursorY: 'ns-resize',
+      backgroundColor: Color('#F6FAFD')
+        .darken(0.5)
+        .alpha(0.3)
+        .toString(),
+      relativeLength: '30%',
+      maxLength: '300px',
+      minLength: '18px',
+      thickness: '6px',
+    },
+  },
 }
 
 /* https://coolors.co/cee5f2-accbe1-7c98b3-536071-536b78 */

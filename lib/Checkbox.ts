@@ -1,9 +1,7 @@
-import Checkbox from './Checkbox/Checkbox'
-import {
+import Checkbox, {
   CheckboxProps,
   StyledCheckboxProps,
-} from './Checkbox/types'
-// TODO: Styled components
+} from './components/Checkbox'
 
 export default Checkbox
 export { StyledCheckboxProps }

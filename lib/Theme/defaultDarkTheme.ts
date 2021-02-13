@@ -1,4 +1,5 @@
 import { Theme } from './types'
+import Color from 'color'
 
 export const defaultDarkTheme: Theme = {
   fontFaces: [
@@ -744,20 +745,20 @@ export const defaultDarkTheme: Theme = {
       },
     },
   },
-  // drawer: {
-  //   handle: {
-  //     cursorX: 'ew-resize',
-  //     cursorY: 'ns-resize',
-  //     backgroundColor: Color(globals.palette.panelBackground)
-  //       .darken(0.5)
-  //       .alpha(0.3)
-  //       .toString(),
-  //     relativeLength: '30%',
-  //     maxLength: '300px',
-  //     minLength: '18px',
-  //     thickness: '6px',
-  //   },
-  // },
+  drawer: {
+    handle: {
+      cursorX: 'ew-resize',
+      cursorY: 'ns-resize',
+      backgroundColor: Color('#4F565E')
+        .darken(0.5)
+        .alpha(0.3)
+        .toString(),
+      relativeLength: '30%',
+      maxLength: '300px',
+      minLength: '18px',
+      thickness: '6px',
+    },
+  },
 }
 
 /* https://coolors.co/cee5f2-accbe1-7c98b3-637081-536b78 */

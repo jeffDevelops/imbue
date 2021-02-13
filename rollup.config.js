@@ -18,7 +18,7 @@ export default async () => ({
     Theme: './lib/Theme.ts',
     Button: './lib/Button.ts',
     Checkbox: './lib/Checkbox.ts',
-    RadioButtoon: './lib/RadioButton.ts',
+    RadioButton: './lib/RadioButton.ts',
     H1: './lib/H1.ts',
     H2: './lib/H2.ts',
     H3: './lib/H3.ts',
@@ -27,6 +27,8 @@ export default async () => ({
     H6: './lib/H6.ts',
     Panel: './lib/Panel.ts',
     Flex: './lib/Flex.ts',
+    Textarea: './lib/Textarea.ts',
+    Drawer: './lib/Drawer.ts',
   },
   plugins: [
     external(),
