@@ -1,11 +1,11 @@
 import styled, { css } from 'styled-components'
 import { StyledLinkProps } from './types'
-import { Theme } from '../Theme/types'
-import { determineColor } from '../utility/Color/determineColor'
+import { Theme } from '../../Theme/types'
+import { determineColor } from '../../utility/Color/determineColor'
 import {
   HierarchicalColorOptions,
   SemanticColorOptions,
-} from '../utility/Color/types'
+} from '../../utility/Color/types'
 
 export const borderAnimationStyles = <
   Props extends {
@@ -19,7 +19,7 @@ export const borderAnimationStyles = <
   &:after {
     content: ' ';
     position: absolute;
-    bottom: -2px;
+    bottom: 0;
     left: 0;
     width: 0;
     background-color: ${determineColor(p) ||
@@ -47,7 +47,7 @@ export const styles = (
   letter-spacing: ${p => p.theme.link.kerning};
   font-weight: ${p => p.theme.link.fontWeight};
   font-family: ${p => p.theme.link.fontFamily};
-  line-height: 1;
+  line-height: calc(14px * 1.75);
   outline: ${p => p.theme.link.outline};
   background-color: transparent;
   border: none;

@@ -7,6 +7,8 @@ import React, {
   useCallback,
   useMemo,
   useRef,
+  createContext,
+  useContext,
   MouseEvent,
   useLayoutEffect,
 } from 'react'
@@ -16,29 +18,53 @@ import {
   HorizontalHandle,
   VerticalHandle,
   Content,
+  Scrollable,
 } from './styled'
 import { withTheme } from 'styled-components'
 import { Theme } from '../../Theme'
 import { useOnClickOutside } from '../../hooks'
+import throttle from 'lodash/throttle'
 
-interface RenderProps {
+export interface DrawerContextValue {
   width: null | number // px; null on initial render
   height: null | number // px; null on initial render
+
+  negativeSpace: {
+    width: number | null // px; null on initial render
+    height: number | null // px; null on initial render
+  }
+
+  isDragging: boolean
 }
+
+const drawerContextInitialValue: DrawerContextValue = {
+  width: null,
+  height: null,
+  negativeSpace: {
+    width: null,
+    height: null,
+  },
+  isDragging: false,
+}
+
+export const DrawerContext = createContext<
+  DrawerContextValue
+>(drawerContextInitialValue)
 
 export interface Props extends DrawerProps {
   theme: Theme
-  children: (renderProps: RenderProps) => ReactNode
+  children: ReactNode
   as?: keyof ReactHTML
 }
 
 const Drawer: FC<Props> = ({
+  onWidthChange,
   as = 'aside',
   children,
   theme,
-  origin,
+  origin = 'left',
   initialOpenExtent = 0,
-  minOpenExtent,
+  minOpenExtent = 0,
   maxOpenExtent = 'fullLength',
   snapping,
   length = '100%',
@@ -53,6 +79,8 @@ const Drawer: FC<Props> = ({
     focused: 9999,
     blurred: 1,
   },
+  usePanelDesign = false,
+  edgesIgnoringSafeArea,
   ...props
 }: Props) => {
   /**
@@ -94,57 +122,78 @@ const Drawer: FC<Props> = ({
   )
   const [isDragging, setIsDragging] = useState(false)
   const [isSnapping, setIsSnapping] = useState(false)
+  const [isAnimating, setIsAnimating] = useState(false)
 
   // Mouse position (only updated when drawer slides in respective plane)
   const [mouseX, setMouseX] = useState<null | number>(null)
   const [mouseY, setMouseY] = useState<null | number>(null)
 
-  const [renderProps, setRenderProps] = useState<
-    RenderProps
-  >({
-    height: null,
-    width: null,
-  })
+  const [windowWidth, setWindowWidth] = useState<
+    number | null
+  >(null)
+  const [windowHeight, setWindowHeight] = useState<
+    number | null
+  >(null)
+  const [contextValue, setContextValue] = useState<
+    DrawerContextValue
+  >(drawerContextInitialValue)
 
   // Listen for drag events
   useEffect(() => {
-    if (isDragging) {
+    if (isDragging || isAnimating) {
       // Name functions so that eventListeners can be garbage collected
-      const updateMouseX = (e: globalThis.MouseEvent) => {
-        e.preventDefault()
-        const relativeMouseX = Math.floor(
-          relativeTo === 'parent'
-            ? e.pageX -
-                (drawerRef?.current?.parentElement?.getBoundingClientRect()
-                  .x || 0)
-            : e.pageX,
-        )
+      const updateMouseX = throttle(
+        (e: globalThis.MouseEvent) => {
+          e.preventDefault()
 
-        if (
-          relativeMouseX >= minOpenExtent ||
-          relativeMouseX <= maxOpenExtent
-        )
-          setMouseX(relativeMouseX)
-      }
-      const updateMouseY = (e: globalThis.MouseEvent) => {
-        e.preventDefault()
-        const relativeMouseY = Math.floor(
-          relativeTo === 'parent'
-            ? e.pageY +
-                (drawerRef?.current?.parentElement?.getBoundingClientRect()
-                  .y || 0)
-            : e.pageY,
-        )
+          // Set the will-change property
+          document.body.style.willChange = 'width'
 
-        if (
-          relativeMouseY >= minOpenExtent ||
-          relativeMouseY <= maxOpenExtent
-        )
-          setMouseY(relativeMouseY)
-      }
+          const relativeMouseX = Math.floor(
+            relativeTo === 'parent'
+              ? e.pageX -
+                  (drawerRef?.current?.parentElement?.getBoundingClientRect()
+                    .x || 0)
+              : e.pageX,
+          )
+
+          if (
+            relativeMouseX >= minOpenExtent ||
+            relativeMouseX <= maxOpenExtent
+          )
+            setMouseX(relativeMouseX)
+        },
+        1000 / 30,
+      )
+
+      const updateMouseY = throttle(
+        (e: globalThis.MouseEvent) => {
+          e.preventDefault()
+
+          // Set the will-change property
+          document.body.style.willChange = 'height'
+
+          const relativeMouseY = Math.floor(
+            relativeTo === 'parent'
+              ? e.pageY +
+                  (drawerRef?.current?.parentElement?.getBoundingClientRect()
+                    .y || 0)
+              : e.pageY,
+          )
+
+          if (
+            relativeMouseY >= minOpenExtent ||
+            relativeMouseY <= maxOpenExtent
+          )
+            setMouseY(relativeMouseY)
+        },
+        1000 / 30,
+      )
+
       const cancelDrag = () => {
         setIsDragging(false)
-        document.body.style.cursor = 'auto'
+        document.body.style.cursor = 'default'
+        document.body.style.willChange = 'auto'
       }
 
       // Update the appropriate coordinate
@@ -175,6 +224,7 @@ const Drawer: FC<Props> = ({
       }
     }
   }, [
+    // isAnimating,
     isDragging,
     relativeTo,
     minOpenExtent,
@@ -342,6 +392,7 @@ const Drawer: FC<Props> = ({
 
         if (shouldBail(mouseX, containerLength, snapExtent))
           return
+
         return setOpenExtent(mouseX)
       }
       case 'right': {
@@ -366,6 +417,7 @@ const Drawer: FC<Props> = ({
     }
   }, [
     isDragging,
+    isAnimating,
     mouseX,
     mouseY,
     origin,
@@ -379,17 +431,94 @@ const Drawer: FC<Props> = ({
     maxOpenExtent,
   ])
 
-  // getBoundingClientRect of container on updates to supply render props
+  // Subscribe to viewport resizes and record the dimensions, so that negative space can be calculated
   useLayoutEffect(() => {
-    if (drawerRef?.current) {
-      setRenderProps({
-        height: drawerRef.current.getBoundingClientRect()
-          .height,
-        width: drawerRef.current.getBoundingClientRect()
-          .width,
-      })
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth)
+      setWindowHeight(window.innerHeight)
     }
-  }, [drawerRef, mouseX, mouseY])
+
+    setWindowWidth(window.innerWidth)
+    setWindowHeight(window.innerHeight)
+
+    window.addEventListener('resize', handleResize)
+
+    return () => {
+      window.removeEventListener('resize', handleResize)
+    }
+  }, [])
+
+  const emitChanges = useCallback(() => {
+    if (drawerRef?.current) {
+      const drawerHeight = drawerRef.current.getBoundingClientRect()
+        .height
+      const drawerWidth = drawerRef.current.getBoundingClientRect()
+        .width
+
+      const newContextValue = {
+        height: drawerHeight,
+        width: drawerWidth,
+        negativeSpace: {
+          width:
+            relativeTo === 'window'
+              ? windowWidth
+                ? windowWidth - drawerWidth
+                : null
+              : drawerRef.current.parentElement?.getBoundingClientRect()
+                  .height || null,
+          height:
+            relativeTo === 'window'
+              ? windowHeight
+                ? windowHeight - drawerHeight
+                : null
+              : drawerRef.current.parentElement?.getBoundingClientRect()
+                  .width || null,
+        },
+        isDragging: isAnimating || isSnapping || isDragging,
+      }
+
+      onWidthChange && onWidthChange(newContextValue)
+      setContextValue(newContextValue)
+    }
+  }, [
+    isAnimating,
+    drawerRef,
+    mouseX,
+    mouseY,
+    windowWidth,
+    windowHeight,
+    relativeTo,
+  ])
+
+  // getBoundingClientRect of container on updates to supply context consumers
+  useLayoutEffect(() => {
+    emitChanges()
+  }, [
+    isAnimating,
+    drawerRef,
+    mouseX,
+    mouseY,
+    windowWidth,
+    windowHeight,
+    relativeTo,
+    emitChanges,
+  ])
+
+  // Continue to lift updates to parents and emit changes to subscribed consumers while animation runs
+  useLayoutEffect(() => {
+    let interval: NodeJS.Timeout | undefined
+
+    if (isAnimating) {
+      interval = setInterval(() => {
+        emitChanges()
+      }, 16.67) // 60 FPS
+    } else {
+      interval && clearInterval(interval)
+    }
+    return () => {
+      interval && clearInterval(interval)
+    }
+  }, [isAnimating])
 
   /**
    * Ensure that the user can close the drawer if other elements are on the page
@@ -412,50 +541,75 @@ const Drawer: FC<Props> = ({
   useOnClickOutside(drawerRef, relinquishFocus)
 
   return (
-    <StyledDrawer
-      animate={{
-        [orientation === 'vertical'
-          ? 'height'
-          : 'width']: openExtent,
-      }}
-      onMouseDown={assumeFocus}
-      onBlur={relinquishFocus}
-      ref={drawerRef}
-      origin={origin}
-      openExtent={openExtent}
-      minOpenExtent={minOpenExtent}
-      maxOpenExtent={maxOpenExtent}
-      position={position}
-      length={length}
-      isSnapping={isSnapping}
-      zIndex={zIndex}
-      {...props}
-    >
-      {origin === 'top' || origin === 'bottom' ? (
-        <HorizontalHandle
-          isSnapping={isSnapping}
-          openExtent={openExtent}
-          onMouseDown={(e: MouseEvent<HTMLElement>) =>
-            setIsDragging(true)
-          }
-          origin={origin}
-        />
-      ) : (
-        <VerticalHandle
-          isSnapping={isSnapping}
-          openExtent={openExtent}
-          onMouseDown={(e: MouseEvent<HTMLElement>) =>
-            setIsDragging(true)
-          }
-          origin={origin}
-        />
-      )}
+    <DrawerContext.Provider value={contextValue}>
+      <StyledDrawer
+        onAnimationComplete={() => setIsAnimating(false)}
+        onAnimationStart={() => setIsAnimating(true)}
+        usePanelDesign={usePanelDesign}
+        animate={{
+          [orientation === 'vertical'
+            ? 'height'
+            : 'width']: openExtent,
+        }}
+        onMouseDown={assumeFocus}
+        onBlur={relinquishFocus}
+        ref={drawerRef}
+        origin={origin}
+        openExtent={openExtent}
+        minOpenExtent={minOpenExtent}
+        maxOpenExtent={maxOpenExtent}
+        position={position}
+        length={length}
+        isSnapping={isSnapping}
+        zIndex={zIndex}
+        {...props}
+      >
+        <Content
+          {...ContentProps}
+          edgesIgnoringSafeArea={!!edgesIgnoringSafeArea}
+        >
+          <Scrollable {...ContentProps}>
+            {children}
+          </Scrollable>
+        </Content>
 
-      <Content {...ContentProps}>
-        {children(renderProps)}
-      </Content>
-    </StyledDrawer>
+        {origin === 'top' || origin === 'bottom' ? (
+          <HorizontalHandle
+            isSnapping={isSnapping}
+            openExtent={openExtent}
+            onMouseDown={(e: MouseEvent<HTMLElement>) => {
+              e.preventDefault()
+              setIsDragging(true)
+            }}
+            origin={origin}
+          />
+        ) : (
+          <VerticalHandle
+            isSnapping={isSnapping}
+            openExtent={openExtent}
+            onMouseDown={(e: MouseEvent<HTMLElement>) => {
+              e.preventDefault()
+              setIsDragging(true)
+            }}
+            origin={origin}
+          />
+        )}
+      </StyledDrawer>
+    </DrawerContext.Provider>
   )
+}
+
+/** Gets the most immediate parent drawer and returns its, and its negative space's, dimensions */
+export const useDrawerDimensions = () => {
+  const drawerDimensions = useContext(DrawerContext)
+
+  if (drawerDimensions === undefined) {
+    throw new Error(
+      'Imbue Error: useDrawerDimensions must be within the render hierarchy of a Drawer component',
+    )
+  }
+
+  return drawerDimensions
 }
 
 export default withTheme(Drawer)

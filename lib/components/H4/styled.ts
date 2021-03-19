@@ -1,7 +1,12 @@
 import styled, { css } from 'styled-components'
 import { Theme } from '../../Theme'
+import { TextAlign } from '../../utility/TextAlign'
 
-export const styles = (p: { theme: Theme }) => css`
+export const styles = (p: {
+  theme: Theme
+  textAlign: TextAlign
+}) => css`
+  text-align: ${p.textAlign};
   color: ${p.theme.h4.color};
   font-family: ${p.theme.h4.fontFamily};
   font-size: ${p.theme.h4.fontSize};
@@ -13,6 +18,9 @@ export const styles = (p: { theme: Theme }) => css`
   text-transform: ${p.theme.h4.textTransform};
 `
 
-export const StyledH4 = styled.h4`
+export const StyledH4 = styled.h4<{
+  theme: Theme
+  textAlign: TextAlign
+}>`
   ${p => styles(p)}
 `

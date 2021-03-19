@@ -1,8 +1,9 @@
 import styled, { css } from 'styled-components'
 import { getCSSForBoxShadow } from '../../utility/BoxShadow/getCSSForBoxShadow'
+import { determineColor } from '../../utility/Color/determineColor'
+import { TextAlign } from '../../utility/TextAlign'
 import { Theme } from '../../Theme/types'
 import { InputProps } from './types'
-import { determineColor } from '../../utility/Color/determineColor'
 import { styles as body1Styles } from '../Body1/styled'
 
 export const borderAnimationStyles = (
@@ -48,12 +49,14 @@ export const RelativeContext = styled.div<InputProps>`
 `
 
 export const styles = (
-  p: InputProps & { theme: Theme },
+  p: InputProps & {
+    theme: Theme
+  },
 ) => css<InputProps>`
-  ${body1Styles}
+  ${p => body1Styles(p)}
   position: relative;
   z-index: 1;
-  background-color: ${p.theme.palette.background};
+  background-color: ${p.theme.palette.background.value};
   border: ${p =>
     p.theme.textInput.border
       ? p.theme.textInput.border

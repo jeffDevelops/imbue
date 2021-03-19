@@ -11,7 +11,7 @@ export interface StyledPanelProps {
   minHeight?: string // CSS string
   maxHeight?: string // CSS string
   padding?: string // CSS string
-  margin?: string
+  margin?: string // CSS string
   backgroundColor?: string // CSS string
   boxShadow?: string // CSS string
   outlined?: boolean

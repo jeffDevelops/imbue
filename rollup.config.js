@@ -11,12 +11,9 @@ export default async () => ({
     'framer-motion',
   ],
   input: {
-    // named exports direct from library
-    // index: './lib/index.ts',
-
-    // Default exports from component files
-    Theme: './lib/Theme.ts',
+    Theme: './lib/Theme/index.ts',
     Button: './lib/Button.ts',
+    GhostButton: './lib/GhostButton.ts',
     Checkbox: './lib/Checkbox.ts',
     RadioButton: './lib/RadioButton.ts',
     H1: './lib/H1.ts',
@@ -25,10 +22,20 @@ export default async () => ({
     H4: './lib/H4.ts',
     H5: './lib/H5.ts',
     H6: './lib/H6.ts',
+    Body1: './lib/Body1.ts',
+    Body2: './lib/Body2.ts',
     Panel: './lib/Panel.ts',
     Flex: './lib/Flex.ts',
+    Grid: './lib/Grid.ts',
+    Input: './lib/Input.ts',
     Textarea: './lib/Textarea.ts',
     Drawer: './lib/Drawer.ts',
+    Link: './lib/Link.ts',
+    ListTree: './lib/ListTree.ts',
+    Code: './lib/Code.ts',
+    CodeBlock: './lib/CodeBlock.ts',
+    Box: './lib/Box.ts',
+    NativeSelect: './lib/NativeSelect.ts',
   },
   plugins: [
     external(),

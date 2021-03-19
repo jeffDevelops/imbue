@@ -1,11 +1,11 @@
 import styled, { css } from 'styled-components'
-import { Theme } from '../Theme/types'
+import { Theme } from '../../Theme/types'
 import { StyledGhostButtonProps } from './types'
 import {
   determineColor,
   determineContrastColor,
-} from '../utility/Color/determineColor'
-import { getCSSForTransition } from '../utility/Transition/getCSSForTransition'
+} from '../../utility/Color/determineColor'
+import { getCSSForTransition } from '../../utility/Transition/getCSSForTransition'
 
 export const styles = (
   p: StyledGhostButtonProps & { theme: Theme },

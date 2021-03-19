@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import { Meta } from '@storybook/react/types-6-0'
-import Textarea from '../lib/Textarea/Textarea'
+import Textarea from '../lib/components/Textarea'
 import { withTheme } from '../testUtils/withTheme'
-import Flex from '../lib/Flex/Flex'
-import Body1 from '../lib/Body1/Body1'
+import Flex from '../lib/components/Flex'
+import Body1 from '../lib/components/Body1'
 
 export default {
   title: 'Components/Textarea',

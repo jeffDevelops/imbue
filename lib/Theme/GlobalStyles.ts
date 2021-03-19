@@ -62,6 +62,7 @@ const GlobalStyles = createGlobalStyle<{
     Font Faces
   */
 
+
   ${p => getCSSForFontFaces(p.theme.fontFaces)}
 
   /*
@@ -69,23 +70,48 @@ const GlobalStyles = createGlobalStyle<{
   */
 
   html {
-    background-color: ${p => p.theme.palette.background};
+    background-color: ${p =>
+      p.theme.palette.background.value};
     min-height: 100%;
-    height: 100%;
+    height: auto;
+    font-family: ${p => p.theme.fontFaces[0].fontFamily};
+    overflow: auto;
   }
-
+  
+  a:-webkit-any-link {
+    text-decoration: none;
+  }
+  
+  
   body {
     min-height: 100%;
-    height: 100%;
+    height: auto;
   }
-
+  
   body, body * {
     box-sizing: border-box;
+    cursor: default;
+
+    font-family: ${p => p.theme.body1.fontFamily};
+    line-height: ${p =>
+      `calc(${p.theme.body1.fontSize} * 1.75)`};
+    font-size: ${p => p.theme.body1.fontSize};
+    font-weight: ${p => p.theme.body1.fontWeight};
+    letter-spacing: ${p => p.theme.body1.kerning};
+    color: ${p => p.theme.palette.background.contrast};
   }
 
   #root {
     min-height: 100vh;
     height: 100%;
+  }
+
+  b {
+    font-weight: 800;
+  }
+
+  em {
+    font-style: italic;
   }
 `
 

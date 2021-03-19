@@ -8,8 +8,7 @@ export interface FontSrc {
  * Imbue dynamically generates @font-face at-rules based on what is provided
  * to the theme's `fontFaces` array. Its src property is a list of FontSrc
  * objects specifying from where the font can be retrieved at runtime, prioritized
- * in the order FontSrc objects are provided. TODO: more info on how Imbue
- * prioritizes fonts.
+ * in the order FontSrc objects are provided.
  */
 export interface FontFace {
   /**

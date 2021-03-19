@@ -1,6 +1,11 @@
 import Color from 'color'
 import { Theme, Globals } from './types'
 
+// Default Theme Objects
+import { buttonThemeLight } from '../components/Button/theme'
+import { nativeSelectThemeLight } from '../components/NativeSelect/theme'
+import { inputThemeLight } from '../components/Input/theme'
+
 export const defaultTheme: Theme & Globals = {
   fontFaces: [
     {
@@ -17,6 +22,18 @@ export const defaultTheme: Theme & Globals = {
         { local: 'noto' },
         { local: 'segoe ui' },
         { local: 'arial' },
+      ],
+    },
+    {
+      fontFamily: 'system-mono',
+      src: [
+        { local: 'SF Mono Regular' },
+        { local: 'Menlo' },
+        { local: 'Andale Mono' },
+        { local: 'Monaco' },
+        { local: 'Consolas' },
+        { local: 'Liberation Mono' },
+        { local: 'Courier' },
       ],
     },
   ],
@@ -87,15 +104,18 @@ export const defaultTheme: Theme & Globals = {
       contrast: '#FFFFFA',
     },
     secondary: {
+      // value: '#e84855',
       value: '#62BFFF',
       contrast: '#FFFFFA',
     },
     tertiary: {
-      value: '#536B78',
+      value: '#88A7CF',
+      // value: '#536B78',
       contrast: '#FFFFFA',
     },
     quaternary: {
-      value: '#7C98B3',
+      // value: '#7C98B3',
+      value: '#536071',
       contrast: '#FFFFFA',
     },
 
@@ -118,13 +138,25 @@ export const defaultTheme: Theme & Globals = {
       contrast: '#FFFFFA',
     },
 
-    background: '#FFFFFA',
-    panelBackground: '#F6FAFD',
+    background: {
+      value: '#FFFFFA',
+      contrast: '#536071',
+    },
+    panelBackground: {
+      value: '#F6FAFD',
+      contrast: '#536071',
+    },
+
+    syntaxHighlighting: {
+      comments: '#93A0B1',
+      punctuation: '#536071',
+      string: '#F01E19',
+    },
   },
   h1: {
     color: '#536071',
     fontFamily: 'system, sans-serif',
-    fontSize: '40px',
+    fontSize: '32px',
     fontStyle: 'normal',
     kerning: '2.75px',
     fontWeight: '600',
@@ -133,7 +165,7 @@ export const defaultTheme: Theme & Globals = {
   h2: {
     color: '#536071',
     fontFamily: 'system, sans-serif',
-    fontSize: '36px',
+    fontSize: '28px',
     fontStyle: 'normal',
     kerning: '2.5px',
     fontWeight: '600',
@@ -142,7 +174,7 @@ export const defaultTheme: Theme & Globals = {
   h3: {
     color: '#536071',
     fontFamily: 'system, sans-serif',
-    fontSize: '30px',
+    fontSize: '24px',
     fontStyle: 'normal',
     kerning: '3px',
     fontWeight: '600',
@@ -151,7 +183,7 @@ export const defaultTheme: Theme & Globals = {
   h4: {
     color: '#536071',
     fontFamily: 'system, sans-serif',
-    fontSize: '28px',
+    fontSize: '20px',
     fontStyle: 'normal',
     kerning: '2px',
     fontWeight: '600',
@@ -168,9 +200,9 @@ export const defaultTheme: Theme & Globals = {
     textTransform: 'uppercase',
   },
   h6: {
-    color: '#93A0B1',
+    color: '#536071',
     fontFamily: 'system, sans-serif',
-    fontSize: '18px',
+    fontSize: '16px',
     fontStyle: 'normal',
     kerning: '1.5px',
     fontWeight: '600',
@@ -179,7 +211,7 @@ export const defaultTheme: Theme & Globals = {
   body1: {
     color: '#536071',
     fontFamily: 'system, sans-serif',
-    fontSize: '14px',
+    fontSize: '12px',
     fontStyle: 'normal',
     kerning: '1px',
     fontWeight: '300',
@@ -188,11 +220,28 @@ export const defaultTheme: Theme & Globals = {
   body2: {
     color: '#93A0B1',
     fontFamily: 'system, sans-serif',
-    fontSize: '12px',
+    fontSize: '10px',
     fontStyle: 'normal',
     kerning: '1px',
     fontWeight: '300',
     marginBottom: '16px',
+  },
+  code: {
+    borderRadius: '6px',
+    backgroundColor: 'rgba(100, 100, 100, 0.1)',
+    color: '#229BF2',
+    fontFamily: '"system-mono", monospace',
+    fontSize: '12px',
+    kerning: '1px',
+    fontWeight: '600',
+    padding: '3px 6px',
+  },
+  codeBlock: {
+    backgroundColor: 'rgba(100, 100, 100, 0.1)',
+    fontFamily: '"system-mono", monospace',
+    fontSize: '12px',
+    kerning: '1px',
+    fontWeight: '600',
   },
   label: {
     color: '#536071',
@@ -201,161 +250,25 @@ export const defaultTheme: Theme & Globals = {
     kerning: '1.25px',
     fontWeight: '600',
   },
-  textInput: {
-    placeholderColor: '#AAC1D0',
-    color: '#536071',
-    border: '1px solid #EEF5FF',
-    fontFamily: 'system, sans-serif',
-    fontSize: '16px',
-    kerning: '1px',
-    fontWeight: '400',
-    height: '48px',
-  },
+  textInput: inputThemeLight,
+  nativeSelect: nativeSelectThemeLight,
   panel: {
     backgroundColor: '#F6FAFD',
     foregroundColor: '#4f565e',
     outlineColor: '#EEF5FF',
     padding: '32px 40px',
   },
-  button: {
-    height: '40px',
-    width: 'auto',
-    textTransform: 'uppercase',
-    fontFamily: 'system, sans-serif',
-    fontSize: '16px',
-    kerning: '3px',
-    fontStyle: 'normal',
-    fontWeight: '800',
-    padding: '0px 24px',
-    border: 'none',
-    outline: 'none',
-    cursor: 'pointer',
-    boxShadow: [
-      {
-        xOffset: '0',
-        yOffset: '0',
-        blurRadius: '0',
-        spreadRadius: '0',
-        color: '#CEE5F200',
-        inset: false,
-      },
-    ],
-    transform: 'scale(1)',
-    transition: [
-      {
-        transitionProperty: 'box-shadow',
-        transitionDuration: '0.3s',
-      },
-      {
-        transitionProperty: 'transform',
-        transitionDuration: '0.3s',
-      },
-      {
-        transitionProperty: 'background-color',
-        transitionDuration: '0.3s',
-      },
-    ],
-    hovered: {
-      height: '40px',
-      width: 'auto',
-      textTransform: 'uppercase',
-      fontFamily: 'system, sans-serif',
-      fontSize: '16px',
-      kerning: '3px',
-      fontStyle: 'normal',
-      fontWeight: '800',
-      padding: '0px 24px',
-      border: 'none',
-      outline: 'none',
-      cursor: 'pointer',
-      transform: 'scale(1.01)',
-      boxShadow: [
-        {
-          xOffset: '1px',
-          yOffset: '3px',
-          blurRadius: '8px',
-          spreadRadius: '0px',
-          color: '#CEE5F2',
-        },
-      ],
-      transition: [
-        {
-          transitionProperty: 'box-shadow',
-          transitionDuration: '0.3s',
-        },
-        {
-          transitionProperty: 'transform',
-          transitionDuration: '0.3s',
-        },
-        {
-          transitionProperty: 'background-color',
-          transitionDuration: '0.3s',
-        },
-      ],
-    },
-    clicked: {
-      height: '40px',
-      width: 'auto',
-      textTransform: 'uppercase',
-      fontFamily: 'system, sans-serif',
-      fontSize: '16px',
-      kerning: '3px',
-      fontStyle: 'normal',
-      fontWeight: '800',
-      padding: '0px 24px',
-      border: 'none',
-      outline: 'none',
-      cursor: 'pointer',
-      boxShadow: [
-        {
-          xOffset: '0',
-          yOffset: '0',
-          blurRadius: '0',
-          spreadRadius: '0',
-          color: '#CEE5F200',
-          inset: false,
-        },
-      ],
-      transition: [
-        {
-          transitionProperty: 'box-shadow',
-          transitionDuration: '0.05s',
-        },
-        {
-          transitionProperty: 'transform',
-          transitionDuration: '0.05s',
-        },
-        {
-          transitionProperty: 'background-color',
-          transitionDuration: '0.05s',
-        },
-      ],
-    },
-    disabled: {
-      cursor: 'not-allowed',
-      height: '40px',
-      width: 'auto',
-      textTransform: 'uppercase',
-      fontFamily: 'system, sans-serif',
-      fontSize: '16px',
-      kerning: '3px',
-      fontStyle: 'normal',
-      fontWeight: '800',
-      padding: '0px 24px',
-      border: 'none',
-      outline: 'none',
-    },
-  },
+  button: buttonThemeLight,
   ghostButton: {
     height: '40px',
     width: 'auto',
     textTransform: 'uppercase',
     fontFamily: 'system, sans-serif',
-    fontSize: '16px',
+    fontSize: '14px',
     kerning: '3px',
     fontStyle: 'normal',
     fontWeight: '800',
-    padding: '0px 24px',
+    padding: '0px 22px',
     outline: 'none',
     borderWidth: '2px',
     borderStyle: 'solid',
@@ -743,6 +656,27 @@ export const defaultTheme: Theme & Globals = {
       maxLength: '300px',
       minLength: '18px',
       thickness: '6px',
+    },
+  },
+  listTree: {
+    list: {
+      dropdownIcon: {
+        fill: '#536071',
+        width: '24px',
+      },
+    },
+    listItems: {
+      borderWidth: '1px',
+      minHeight: '30px',
+      hover: {
+        backgroundColor: '#E1EAEF',
+        transition: [
+          {
+            transitionProperty: 'background-color',
+            transitionDuration: '0.3s',
+          },
+        ],
+      },
     },
   },
 }

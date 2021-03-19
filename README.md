@@ -30,7 +30,7 @@ import TextInput from '@imbuejs/core/TextInput'
 
 If you'd like to contribute to the Imbue project, you'll want to use `yarn` as your package manager. The scripts to symlink the project locally all rely on yarn, and you cannot mix and match local symlinks between package managers.
 
-Fork the repo.
+Clone the repo
 
 Install the dev-dependencies:
 
@@ -53,14 +53,13 @@ yarn local
 If all is as it should be, the build folder should have a package.json at its root identical to the library's root package.json, and after running `yarn` in whichever test-env project you'd like to test in, the `node_modules/@imbuejs/core` folder should have the contents of the `build` directory at its root (there should NOT be a `build/` folder at the root). This ensures that the local symlinked library's imports behave identically to those within the library installed from the registry.
 When you start the dev server for the consuming application, it should recompile when changes are made to the library code.
 
+To create a new component:
+```
+yarn init:component <component name>
+```
+
 To run the tests:
 
 ```
 yarn test [ModuleName]
-```
-
-To run Storybook:
-
-```
-yarn storybook
 ```

@@ -1,8 +1,8 @@
 import React from 'react'
 import { Meta } from '@storybook/react/types-6-0'
-import Link from '../lib/Link/Link'
+import Link from '../lib/components/Link'
 import { withTheme } from '../testUtils/withTheme'
-import Flex from '../lib/Flex/Flex'
+import Flex from '../lib/components/Flex'
 import Body1 from '../lib/Body1'
 
 export default {

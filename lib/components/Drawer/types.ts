@@ -1,11 +1,20 @@
 import { ReactHTML } from 'react'
+import { DrawerContextValue } from './Drawer'
 import { Overflow } from '../../utility/Overflow/types'
 import { Position } from '../../utility/Position/types'
 
 export interface DrawerContentProps {
   /**
+   * A function to get called when the drawer is resized. Use this to notify
+   * parents of changes in dimension, whether by user drawer resizing, or
+   * viewport resizing.
+   */
+  onWidthChange?(dimensions: DrawerContextValue): void
+
+  /**
    *  Passed directly by the Drawer component, so that the content
-   *  knows how to render margin that accounts for the drawer handle
+   *  knows how to render margin that accounts for the drawer handle.
+   * Default 'left'
    */
   origin: Position
 
@@ -62,11 +71,11 @@ export interface StyledDrawerProps {
    *  hide at its origination; defaults to 0 px, in which case
    *  the handle is fixed to edge of its container
    */
-  minOpenExtent: number
+  minOpenExtent?: number
   /**
-   *  From which side of the container the drawer originates
+   *  From which side of the container the drawer originates. Default 'left'
    */
-  origin: Position
+  origin?: Position
 
   /**
    * Length of the drawer itself; defaults to 100% of the container
@@ -84,9 +93,27 @@ export interface StyledDrawerProps {
    *  window, the appropriate max length is used.
    */
   maxOpenExtent: number | 'fullLength'
+
+  /**
+   * Whether a flat or material panel design is used. Default: false
+   */
+  usePanelDesign?:
+    | boolean
+    | {
+        borderRadius: {
+          topRight: string // css value
+          topLeft: string // css value
+          bottomRight: string // css value
+          bottomLeft: string // css value
+        }
+      }
+
+  /** Whether to allocate space uniformly about the edge of the drawer with the handle. Creates a "safe area" for the drawer handle */
+  edgesIgnoringSafeArea?: boolean
 }
 
 export interface DrawerProps extends StyledDrawerProps {
+  onWidthChange?(dimensions: DrawerContextValue): void
   /**
    *  Tells the Drawer how to calculate certain layout constraints, like
    *  snapping and maxOpenExtent. For example, if you've assigned an

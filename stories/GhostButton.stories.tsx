@@ -1,6 +1,6 @@
 import React from 'react'
 import { Meta } from '@storybook/react/types-6-0'
-import GhostButton from '../lib/GhostButton/GhostButton'
+import GhostButton from '../lib/components/GhostButton'
 import { withTheme } from '../testUtils/withTheme'
 
 export default {

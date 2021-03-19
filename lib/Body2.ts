@@ -1,8 +1,3 @@
-import Body2, { Body2Props } from './components/Body2/Body2'
-import {
-  StyledBody2,
-  styles,
-} from './components/Body2/styled'
-
-export { Body2Props, StyledBody2, styles }
+import Body2 from './components/Body2'
 export default Body2
+export * from './components/Body2'

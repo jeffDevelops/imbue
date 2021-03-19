@@ -1,10 +1,9 @@
-import Drawer from './Drawer'
-import {
-  DrawerProps,
-  StyledDrawerProps,
-  DrawerContentProps,
-  DrawerState,
-} from './types'
+import Drawer, {
+  DrawerContext,
+  DrawerContextValue,
+  useDrawerDimensions,
+} from './Drawer'
+import { DrawerProps, StyledDrawerProps } from './types'
 import { drawerStyles, StyledDrawer } from './styled'
 
 export default Drawer
@@ -13,4 +12,7 @@ export {
   StyledDrawer,
   DrawerProps,
   StyledDrawerProps,
+  DrawerContext,
+  DrawerContextValue,
+  useDrawerDimensions,
 }

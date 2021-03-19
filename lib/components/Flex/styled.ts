@@ -2,18 +2,16 @@ import styled, { css } from 'styled-components'
 import { FlexProps } from './types'
 
 export const styles = (p: FlexProps) => css`
-  ${p.gridArea && `grid-area: ${p.gridArea};`};
-  display: flex;
+  ${p.gridArea && `grid-area: ${p.gridArea};`}
+  display: ${p.display ? p.display : 'flex'};
   flex-direction: ${() => {
     if (p.column) return 'column'
     if (p.flexDirection) return p.flexDirection
     return 'row'
   }};
-  flex-wrap: ${p.wrap};
+  flex-wrap: ${p.wrap || 'no-wrap'};
   justify-content: ${p.justifyContent || 'center'};
   align-items: ${p.alignItems || 'center'};
-  width: ${p.width || '100%'};
-  height: ${p.height || 'auto'};
   max-width: ${p.maxWidth || 'none'};
   max-height: ${p.maxHeight || 'none'};
   min-width: ${p.minWidth || '0'};
@@ -22,13 +20,19 @@ export const styles = (p: FlexProps) => css`
   margin: ${p.margin || 'initial'};
   padding: ${p.padding || 'initial'};
   position: ${p.position || 'static'};
-  
-  ${p.top && `top: ${p.top};`}
-  ${p.left && `left: ${p.left};`}
-  ${p.right && `right: ${p.right};`}
-  ${p.bottom && `bottom: ${p.bottom};`}
 `
 
-export const StyledFlex = styled.div<FlexProps>`
+export const StyledFlex = styled.div.attrs<FlexProps>(
+  ({ width, height, top, left, right, bottom }) => ({
+    style: {
+      width: width || '100%',
+      height: height || 'auto',
+      ...(top ? { top } : {}),
+      ...(left ? { left } : {}),
+      ...(right ? { right } : {}),
+      ...(bottom ? { bottom } : {}),
+    },
+  }),
+)`
   ${p => styles(p)}
 `

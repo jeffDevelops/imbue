@@ -1,5 +1,6 @@
 import React, {
   createContext,
+  useContext,
   ReactNode,
   FC,
   useEffect,
@@ -14,8 +15,7 @@ import { defaultDarkTheme } from './defaultDarkTheme'
 import GlobalStyles from './GlobalStyles'
 
 export interface ThemeContextType {
-  theme: Theme
-  darkTheme: Theme
+  theme: Theme // The current theme (dark or light)
   isDarkMode: boolean
   setIsDarkMode: Dispatch<SetStateAction<boolean>>
 }
@@ -35,28 +35,53 @@ const ThemeProvider: FC<ThemeContextProviderProps> = ({
   theme = defaultTheme,
   darkTheme = defaultDarkTheme,
 }: ThemeContextProviderProps) => {
-  const [isDarkMode, setIsDarkMode] = useState(
-    window.matchMedia('(prefers-color-scheme: dark)')
-      .matches,
-  )
+  const initialState = (() => {
+    // Prioritize session storage
+    if (
+      sessionStorage.getItem('@imbuejs/Theme:isDarkMode')
+    ) {
+      return JSON.parse(
+        sessionStorage.getItem(
+          '@imbuejs/Theme:isDarkMode',
+        ) as string,
+      )
+    }
+
+    return window.matchMedia('(prefers-color-scheme: dark)')
+      .matches
+  })()
+
+  const [isDarkMode, setIsDarkMode] = useState(initialState)
 
   useEffect(() => {
     const handleDarkModeChange = (
       e: MediaQueryListEvent,
     ) => {
-      e.matches ? setIsDarkMode(true) : setIsDarkMode(false)
+      setIsDarkMode(e.matches)
     }
 
     window
       .matchMedia('(prefers-color-scheme: dark)')
       .addEventListener('change', handleDarkModeChange)
+
+    return () => {
+      window
+        .matchMedia('(prefers-color-scheme: dark)')
+        .removeEventListener('change', handleDarkModeChange)
+    }
   }, [])
+
+  useEffect(() => {
+    sessionStorage.setItem(
+      '@imbuejs/Theme:isDarkMode',
+      `${isDarkMode}`,
+    )
+  }, [isDarkMode])
 
   return (
     <ThemeContext.Provider
       value={{
-        theme: theme,
-        darkTheme: darkTheme,
+        theme: isDarkMode ? darkTheme : theme,
         isDarkMode,
         setIsDarkMode,
       }}

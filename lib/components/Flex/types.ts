@@ -1,4 +1,4 @@
-import { ReactNode } from 'react'
+import { ReactNode, HTMLAttributes } from 'react'
 
 type ItemDistribution =
   | 'space-between'
@@ -9,12 +9,13 @@ type ItemDistribution =
   | 'stretch'
   | 'center'
   | 'normal'
-  | 'left'
   | 'right'
   | 'start'
+  | 'left'
   | 'end'
 
 export interface StyledFlexProps {
+  display?: 'flex' | 'inline-flex'
   column?: boolean
   flexDirection?:
     | 'row'
@@ -46,6 +47,8 @@ export interface StyledFlexProps {
   gridArea?: string
 }
 
-export interface FlexProps extends StyledFlexProps {
+export interface FlexProps
+  extends StyledFlexProps,
+    HTMLAttributes<HTMLDivElement> {
   children?: ReactNode
 }

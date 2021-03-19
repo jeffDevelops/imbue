@@ -1,6 +1,6 @@
 import React from 'react'
 import { Meta } from '@storybook/react/types-6-0'
-import Button from '../lib/Button/Button'
+import Button from '../lib/components/Button'
 import { withTheme } from '../testUtils/withTheme'
 
 export default {

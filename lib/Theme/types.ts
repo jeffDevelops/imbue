@@ -6,6 +6,10 @@ import { FontFace } from '../utility/FontFace/types'
 import { Color } from '../utility/Color/types'
 import { Cursor } from '../utility/Cursor/types'
 
+// Component themes
+import { NativeSelectTheme } from '../components/NativeSelect/theme'
+import { InputTheme } from '../components/Input/theme'
+
 // Components
 export interface RadioStyles {
   boxShadow: BoxShadow
@@ -123,6 +127,26 @@ export interface ButtonStyles extends TextStyles {
   boxShadow?: BoxShadow
 }
 
+export type ButtonTheme = TextStyles &
+  BoxModel &
+  ButtonStyles & {
+    hovered: BoxModel & ButtonStyles
+    clicked: BoxModel & ButtonStyles
+    disabled: BoxModel & ButtonStyles
+  }
+
+export interface ListTreeStyles {
+  list: {}
+  listItems: {
+    minHeight: string
+    borderWidth: string
+    hover: {
+      transition: Transition
+      backgroundColor: string
+    }
+  }
+}
+
 export interface PaletteColors {
   value: string // The actual color value for this palette member
   contrast: string // The contrast color for when text must be readable as the foreground of the above color value
@@ -140,8 +164,10 @@ export interface Palette {
   warning: PaletteColors
   success: PaletteColors
 
-  background: string
-  panelBackground: string
+  background: PaletteColors
+  panelBackground: PaletteColors
+
+  syntaxHighlighting: SyntaxHighlighting
 }
 
 export interface BoxShadowConfig {
@@ -226,6 +252,21 @@ export interface PanelConfig {
   outlineColor: string
 }
 
+export interface SyntaxHighlighting {
+  comments: string
+  punctuation: string
+  string: string
+}
+
+export type CodeStyles = {
+  backgroundColor: string
+  borderRadius: string
+  padding: string
+} & TypographyStyles
+
+export type CodeBlockStyles = {
+  backgroundColor: string
+} & Omit<TypographyStyles, 'color'>
 export interface Theme {
   // Globals
   fontFaces: FontFace[]
@@ -244,12 +285,11 @@ export interface Theme {
   h6: TypographyStyles
   body1: TypographyStyles
   body2: TypographyStyles
+  code: CodeStyles
+  codeBlock: CodeBlockStyles
   label: TypographyStyles
-  textInput: TypographyStyles & {
-    placeholderColor: string
-    border?: string
-    height: string
-  }
+  textInput: InputTheme
+  nativeSelect: NativeSelectTheme
   panel: PanelConfig
 
   button: TextStyles &
@@ -309,4 +349,5 @@ export interface Theme {
       }
     }
   drawer: DrawerStyles
+  listTree: ListTreeStyles
 }

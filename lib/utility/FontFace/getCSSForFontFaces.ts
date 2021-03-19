@@ -19,6 +19,9 @@ export const getCSSForFontFaces = (
       atRules += `@font-face {
         font-family: ${fontFace.fontFamily};
         src: ${generateSrc(fontFace.src)};
+        -webkit-font-smoothing: antialiased;
+        font-weight: normal;
+        font-style: normal; 
       }${index === arr.length - 1 ? '' : '\n'}`
 
       return atRules
@@ -59,9 +62,9 @@ const generateSrc = (fontSrcs: FontSrc[]) => {
     ) => {
       // Add a semicolon to end the rule if it's the last, otherwise, comma-separate
       if (i === arr.length - 1) {
-        src += `${fontDef};`
+        src += `${fontDef}`
       } else {
-        src += `${fontDef},`
+        src += `${fontDef}, `
       }
       return src
     },

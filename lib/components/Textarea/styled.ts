@@ -70,7 +70,7 @@ export const styles = (
 
   position: relative;
   z-index: 1;
-  background-color: ${p.theme.palette.background};
+  background-color: ${p.theme.palette.background.value};
   border: ${p =>
     p.theme.textInput.border
       ? p.theme.textInput.border

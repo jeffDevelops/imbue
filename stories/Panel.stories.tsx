@@ -1,10 +1,10 @@
 import React from 'react'
 import { Meta } from '@storybook/react/types-6-0'
-import Panel from '../lib/Panel/Panel'
+import Panel from '../lib/components/Panel'
 import { withTheme } from '../testUtils/withTheme'
-import H3 from '../lib/H3/H3'
-import Body1 from '../lib/Body1/Body1'
-import Flex from '../lib/Flex/Flex'
+import H3 from '../lib/components/H3'
+import Body1 from '../lib/components/Body1'
+import Flex from '../lib/components/Flex'
 
 export default {
   title: 'Components/Panel',

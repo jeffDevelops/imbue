@@ -1,17 +1,3 @@
-import GhostButton from './GhostButton/GhostButton'
-import {
-  GhostButtonProps,
-  StyledGhostButtonProps,
-} from './GhostButton/types'
-import {
-  styles,
-  StyledGhostButton,
-} from './GhostButton/styled'
-
+import GhostButton from './components/GhostButton'
+export * from './components/GhostButton'
 export default GhostButton
-export {
-  GhostButtonProps,
-  StyledGhostButtonProps,
-  styles,
-  StyledGhostButton,
-}

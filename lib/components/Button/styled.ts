@@ -59,9 +59,13 @@ export const styles = (
         box-shadow: ${getCSSForBoxShadow(
           p.theme.button.hovered.boxShadow,
         )};
-        transition: ${getCSSForTransition(
-          p.theme.button.hovered.transition,
-        )};
+        transition: ${
+          p.theme.button.hovered.transition
+            ? getCSSForTransition(
+                p.theme.button.hovered.transition,
+              )
+            : 'none'
+        };
         transform: ${
           p.theme.button.hovered.transform
             ? `${p.theme.button.hovered.transform} translate3d( 0, 0, 0) perspective(1px)`
@@ -79,9 +83,13 @@ export const styles = (
             ? `${p.theme.button.clicked.transform} translate3d( 0, 0, 0) perspective(1px)`
             : 'none'
         };
-        transition: ${getCSSForTransition(
-          p.theme.button.clicked.transition,
-        )};
+        transition: ${
+          p.theme.button.hovered.transition
+            ? getCSSForTransition(
+                p.theme.button.hovered.transition,
+              )
+            : 'none'
+        };
       }
     `}
 `

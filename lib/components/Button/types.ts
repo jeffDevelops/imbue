@@ -1,11 +1,16 @@
-import { ReactNode, ButtonHTMLAttributes } from 'react'
-import { Color } from '../utility/Color/types'
+import {
+  ReactNode,
+  ButtonHTMLAttributes,
+  RefObject,
+} from 'react'
+import { Color } from '../../utility/Color/types'
 
 export type ButtonComponentProps = ButtonHTMLAttributes<
   HTMLButtonElement
 > & {
   children?: ReactNode
   width?: string
+  ref?: RefObject<HTMLButtonElement>
 }
 
 export type ButtonProps = ButtonComponentProps &

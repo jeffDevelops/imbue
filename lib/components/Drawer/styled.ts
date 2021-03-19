@@ -1,4 +1,6 @@
 import styled, { css } from 'styled-components'
+import { motion } from 'framer-motion'
+import Color from 'color'
 import { Theme } from '../../Theme'
 import { getCSSForBoxShadow } from '../../utility/BoxShadow/getCSSForBoxShadow'
 import { Position } from '../../utility/Position/types'
@@ -7,14 +9,18 @@ import {
   DrawerState,
   DrawerContentProps,
 } from './types'
-import { motion } from 'framer-motion'
+
+import { DrawerProps } from '.'
 
 export const drawerStyles = (
   p: StyledDrawerProps & DrawerState & { theme: Theme },
 ) => css`
- position: ${p.position};
-  z-index: ${p.zIndex};
+  will-change: transform;
+  position: ${p.position};
+  z-index: ${p.zIndex?.blurred};
   margin: auto;
+  background-color: ${p =>
+    p.theme.palette.panelBackground.value};
 
   ${
     p.origin === 'top' &&
@@ -36,7 +42,82 @@ export const drawerStyles = (
   box-shadow: ${getCSSForBoxShadow(
     p.theme.boxShadow.default,
   )};
-  border-radius: ${p.theme.borderRadius};
+
+  /* Allow the consumer to configure the border radii of the panel design drawer */
+  ${
+    p.usePanelDesign &&
+    `
+    
+    ${
+      typeof p.usePanelDesign === 'object' &&
+      `
+      border-top-right-radius: ${
+        p.usePanelDesign?.borderRadius.topRight ||
+        p.theme.borderRadius
+      };
+      border-top-left-radius: ${
+        p.usePanelDesign?.borderRadius.topLeft ||
+        p.theme.borderRadius
+      };
+      border-bottom-right-radius: ${
+        p.usePanelDesign?.borderRadius.bottomRight ||
+        p.theme.borderRadius
+      };
+      border-bottom-left-radius: ${
+        p.usePanelDesign?.borderRadius.bottomLeft ||
+        p.theme.borderRadius
+      };
+      `
+    }
+    
+    `
+  }
+
+  ${
+    !p.usePanelDesign &&
+    `
+    background-color: ${p.theme.palette.background.value};
+    box-shadow: none;
+    
+    ${
+      p.origin === 'top'
+        ? `
+      border-bottom: 2px solid ${p.theme.drawer.handle.backgroundColor};
+      `
+        : ''
+    }
+    ${
+      p.origin === 'bottom'
+        ? `
+      border-top: 2px solid ${p.theme.drawer.handle.backgroundColor};
+    `
+        : ''
+    }
+    ${
+      p.origin === 'right'
+        ? `
+      border-left: 2px solid ${p.theme.drawer.handle.backgroundColor};
+    `
+        : ''
+    }
+    ${
+      p.origin === 'left'
+        ? `
+      border-right: 2px solid ${p.theme.drawer.handle.backgroundColor};
+    `
+        : ''
+    }
+
+    ${
+      p.openExtent === 0 &&
+      `border-color: ${Color(
+        p.theme.drawer.handle.backgroundColor,
+      ).alpha(0)};`
+    }
+
+    transition: border-color .3s;
+  `
+  }
 
   min-height: ${
     // If the orientation is horizontal, the min-height is the minOpenExtent
@@ -50,7 +131,9 @@ export const drawerStyles = (
     p.origin === 'top' || p.origin === 'bottom'
       ? `${
           p.maxOpenExtent === 'fullLength'
-            ? '100%'
+            ? '100vh'
+            : window.innerHeight <= p.maxOpenExtent
+            ? '100vh'
             : `${p.maxOpenExtent}px`
         }` || 'none'
       : 'none'
@@ -68,13 +151,14 @@ export const drawerStyles = (
     p.origin === 'left' || p.origin === 'right'
       ? `${
           p.maxOpenExtent === 'fullLength'
-            ? '100%'
+            ? '100vw'
+            : window.innerWidth <= p.maxOpenExtent
+            ? '100vw'
             : `${p.maxOpenExtent}px`
         }` || 'none'
       : 'none'
   };
 
-  background-color: ${p => p.theme.palette.panelBackground};
 `
 
 export const StyledDrawer = styled(motion.section).attrs<
@@ -100,27 +184,42 @@ export const StyledDrawer = styled(motion.section).attrs<
   ${p => drawerStyles(p)}
 `
 
-export const Content = styled.section<DrawerContentProps>`
-  height: 100%;
-  width: calc(100% - 24px);
+export const Scrollable = styled.bdi<DrawerContentProps>`
+  ${p => (p.origin === 'left' ? 'direction: rtl;' : '')}
+
+  & > * {
+    direction: ltr;
+  }
+`
+
+export const Content = styled.section<
+  DrawerContentProps & { edgesIgnoringSafeArea: boolean }
+>`
   overflow-y: ${p => p.overflowY};
   overflow-x: ${p => p.overflowX};
+  height: auto;
+  height: auto;
+  direction: ltr;
+  width: 100%;
 
   /* Allocate space for the handle */
-  margin-top: ${p =>
-    p.origin === 'bottom' ? '24px' : '0'};
-  margin-left: ${p =>
-    p.origin === 'right' ? '24px' : '0'};
-  margin-right: ${p =>
-    p.origin === 'left' ? '24px' : '0'};
-  margin-bottom: ${p =>
-    p.origin === 'top' ? '24px' : '0'};
+  ${p =>
+    !p.edgesIgnoringSafeArea &&
+    `
+    width: calc(100% - 24px);
+    margin-top: ${p.origin === 'bottom' ? '24px' : '0'};
+    margin-left: ${p.origin === 'right' ? '24px' : '0'};
+    margin-right: ${p.origin === 'left' ? '24px' : '0'};
+    margin-bottom: ${p.origin === 'top' ? '24px' : '0'};
+  }
+  `}
 `
 
 const handleStyles = (props: { theme: Theme }) => css`
   position: absolute;
   margin: auto; /* Positioning is calculated based on consumer-specified origin; this centers the handle */
   border-radius: 8px;
+  z-index: 1;
   background-color: ${p =>
     p.theme.drawer.handle.backgroundColor};
 `
@@ -157,10 +256,6 @@ export const HorizontalHandle = styled.div<
   height: 6px;
 
   cursor: ${p => p.theme.drawer.handle.cursorY};
-
-  & > ${Content} {
-    overflow: hidden;
-  }
 `
 
 export const VerticalHandle = styled.div<

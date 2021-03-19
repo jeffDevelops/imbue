@@ -3,13 +3,13 @@ import React, {
   ReactNode,
   ButtonHTMLAttributes,
 } from 'react'
-import { StrictUnion } from '../tsUtils/types/StrictUnion'
+import { StrictUnion } from '../../tsUtils/types/StrictUnion'
 import { StyledGhostButton } from './styled'
 
 import {
   HierarchicalColor,
   SemanticColor,
-} from '../utility/Color/types'
+} from '../../utility/Color/types'
 
 export type ButtonColor = StrictUnion<
   HierarchicalColor | SemanticColor

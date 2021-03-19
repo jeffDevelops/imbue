@@ -1,13 +1,13 @@
 import React, { useState } from 'react'
 import { Meta } from '@storybook/react/types-6-0'
-import Checkbox from '../lib/Checkbox/Checkbox'
+import Checkbox from '../lib/components/Checkbox'
 import { withTheme } from '../testUtils/withTheme'
-import Flex from '../lib/Flex/Flex'
-import H3 from '../lib/H3/H3'
-import Body1 from '../lib/Body1/Body1'
-import Body2 from '../lib/Body2/Body2'
-import Label from '../lib/Label/Label'
-import Panel from '../lib/Panel/Panel'
+import Flex from '../lib/components/Flex'
+import H3 from '../lib/components/H3'
+import Body1 from '../lib/components/Body1'
+import Body2 from '../lib/components/Body2'
+import Label from '../lib/components/Label'
+import Panel from '../lib/components/Panel'
 
 export default {
   title: 'Components/Checkbox',

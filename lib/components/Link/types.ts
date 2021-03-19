@@ -1,5 +1,5 @@
 import { AnchorHTMLAttributes, ReactNode } from 'react'
-import { OptionalColor } from '../utility/Color/types'
+import { OptionalColor } from '../../utility/Color/types'
 
 export type LinkComponentProps = AnchorHTMLAttributes<
   HTMLButtonElement
@@ -8,6 +8,6 @@ export type LinkComponentProps = AnchorHTMLAttributes<
   width?: string
 }
 
-export type StyledLinkProps = OptionalColor & {}
+export type StyledLinkProps = OptionalColor
 
 export type LinkProps = LinkComponentProps & StyledLinkProps

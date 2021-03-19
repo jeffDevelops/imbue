@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import { Meta } from '@storybook/react/types-6-0'
-import Input from '../lib/Input/Input'
+import Input from '../lib/components/Input'
 import { withTheme } from '../testUtils/withTheme'
-import Flex from '../lib/Flex/Flex'
+import Flex from '../lib/components/Flex'
 
 export default {
   title: 'Components/Input',
