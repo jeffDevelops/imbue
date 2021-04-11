@@ -1,6 +1,6 @@
 import { ReactNode } from 'react'
 import { Color } from '../../utility/Color/types'
-import { Position } from '../../utility/Position/types'
+import { PositionValues } from '../../utility/Position/types'
 
 export interface StyledPanelProps {
   children?: ReactNode
@@ -20,6 +20,6 @@ export interface StyledPanelProps {
 
 export interface PanelProps extends StyledPanelProps {
   accentBorder?: {
-    placement: Position
+    placement: PositionValues
   } & Color
 }

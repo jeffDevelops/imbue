@@ -9,6 +9,7 @@ import { Cursor } from '../utility/Cursor/types'
 // Component themes
 import { NativeSelectTheme } from '../components/NativeSelect/theme'
 import { InputTheme } from '../components/Input/theme'
+import { SelectTheme } from '../components/Select/theme'
 
 // Components
 export interface RadioStyles {
@@ -290,6 +291,7 @@ export interface Theme {
   label: TypographyStyles
   textInput: InputTheme
   nativeSelect: NativeSelectTheme
+  select: SelectTheme
   panel: PanelConfig
 
   button: TextStyles &

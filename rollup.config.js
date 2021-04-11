@@ -36,6 +36,8 @@ export default async () => ({
     CodeBlock: './lib/CodeBlock.ts',
     Box: './lib/Box.ts',
     NativeSelect: './lib/NativeSelect.ts',
+    Select: './lib/Select.ts',
+    utility: './lib/utility.ts',
   },
   plugins: [
     external(),

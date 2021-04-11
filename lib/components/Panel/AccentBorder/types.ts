@@ -1,14 +1,14 @@
 import { HTMLAttributes } from 'react'
-import { Position } from '../../../utility/Position/types'
+import { PositionValues } from '../../../utility/Position/types'
 import { Color } from '../../../utility/Color/types'
 
 export type StyledPanelAccentBorderProps = {
-  placement: Position
+  placement: PositionValues
 } & Color
 
 export interface DivAndPlacement
   extends HTMLAttributes<HTMLDivElement> {
-  placement: Position
+  placement: PositionValues
 }
 
 export type PanelAccentBorderProps = Color & DivAndPlacement

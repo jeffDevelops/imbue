@@ -5,6 +5,7 @@ import Color from 'color'
 import { buttonThemeDark } from '../components/Button/theme'
 import { nativeSelectThemeDark } from '../components/NativeSelect/theme'
 import { inputThemeDark } from '../components/Input/theme'
+import { selectThemeDark } from '../components/Select/theme'
 
 export const defaultDarkTheme: Theme = {
   fontFaces: [
@@ -251,6 +252,7 @@ export const defaultDarkTheme: Theme = {
   },
   textInput: inputThemeDark,
   nativeSelect: nativeSelectThemeDark,
+  select: selectThemeDark,
   panel: {
     backgroundColor: '#262A2D',
     foregroundColor: '#F6FAFD',

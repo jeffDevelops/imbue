@@ -5,6 +5,7 @@ import { Theme, Globals } from './types'
 import { buttonThemeLight } from '../components/Button/theme'
 import { nativeSelectThemeLight } from '../components/NativeSelect/theme'
 import { inputThemeLight } from '../components/Input/theme'
+import { selectThemeLight } from '../components/Select/theme'
 
 export const defaultTheme: Theme & Globals = {
   fontFaces: [
@@ -120,7 +121,7 @@ export const defaultTheme: Theme & Globals = {
     },
 
     disabled: {
-      value: '#E1EAEF',
+      value: '#B9CACF',
       contrast: '#FFFFFA',
     },
 
@@ -252,6 +253,7 @@ export const defaultTheme: Theme & Globals = {
   },
   textInput: inputThemeLight,
   nativeSelect: nativeSelectThemeLight,
+  select: selectThemeLight,
   panel: {
     backgroundColor: '#F6FAFD',
     foregroundColor: '#4f565e',

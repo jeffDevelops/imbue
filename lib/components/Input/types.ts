@@ -6,6 +6,8 @@ export type InputProps = InputHTMLAttributes<
   HTMLInputElement
 > &
   OptionalColor & {
+    /** Default 0 */
+    zIndex?: number
     label?: string
     LabelProps?: LabelProps
     margin?: string // CSS value

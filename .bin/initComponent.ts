@@ -176,7 +176,7 @@ const { msleep: sleep } = Sleep
   fs.writeFileSync(
     `${path.join(
       __dirname,
-      `..lib/components/${componentName}/theme.ts`,
+      `../lib/components/${componentName}/theme.ts`,
     )}`,
     themeTemplate,
   )

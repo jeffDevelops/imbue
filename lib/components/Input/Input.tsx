@@ -1,4 +1,4 @@
-import React, { FC, forwardRef } from 'react'
+import React, { forwardRef } from 'react'
 import Label from '../Label/Label'
 import Flex from '../Flex/Flex'
 import {
@@ -10,7 +10,14 @@ import { InputProps } from './types'
 
 const TextInput = forwardRef<HTMLInputElement, InputProps>(
   (
-    { LabelProps, label, margin, id, ...props }: InputProps,
+    {
+      LabelProps,
+      label,
+      margin,
+      id,
+      zIndex = 0,
+      ...props
+    }: InputProps,
     ref,
   ) => {
     return (
@@ -26,8 +33,12 @@ const TextInput = forwardRef<HTMLInputElement, InputProps>(
             {label}
           </Label>
         )}
-        <RelativeContext {...props}>
-          <StyledTextInput id={id} {...props} />
+        <RelativeContext zIndex={zIndex} {...props}>
+          <StyledTextInput
+            zIndex={zIndex}
+            id={id}
+            {...props}
+          />
           {props.error && (
             <InputErrorMessage>
               {props.error}

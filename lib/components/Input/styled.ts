@@ -1,12 +1,11 @@
 import styled, { css } from 'styled-components'
 import { getCSSForBoxShadow } from '../../utility/BoxShadow/getCSSForBoxShadow'
 import { determineColor } from '../../utility/Color/determineColor'
-import { TextAlign } from '../../utility/TextAlign'
 import { Theme } from '../../Theme/types'
 import { InputProps } from './types'
 import { styles as body1Styles } from '../Body1/styled'
 
-export const borderAnimationStyles = (
+const borderAnimationStyles = (
   p: InputProps & { theme: Theme },
 ) => css`
   &:after {
@@ -19,7 +18,7 @@ export const borderAnimationStyles = (
       ? p.theme.palette.danger.value
       : determineColor(p) || p.theme.palette.primary.value};
     height: 10px;
-    z-index: 0;
+    z-index: ${p.zIndex !== undefined ? p.zIndex - 1 : 0};
     border-radius: 0 0 8px 8px;
     transition: width ease-in 0.2s, color ease-in 0.2s;
   }
@@ -55,7 +54,7 @@ export const styles = (
 ) => css<InputProps>`
   ${p => body1Styles(p)}
   position: relative;
-  z-index: 1;
+  z-index: ${p.zIndex};
   background-color: ${p.theme.palette.background.value};
   border: ${p =>
     p.theme.textInput.border

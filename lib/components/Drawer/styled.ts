@@ -3,7 +3,7 @@ import { motion } from 'framer-motion'
 import Color from 'color'
 import { Theme } from '../../Theme'
 import { getCSSForBoxShadow } from '../../utility/BoxShadow/getCSSForBoxShadow'
-import { Position } from '../../utility/Position/types'
+import { PositionValues } from '../../utility/Position/types'
 import {
   StyledDrawerProps,
   DrawerState,
@@ -225,7 +225,7 @@ const handleStyles = (props: { theme: Theme }) => css`
 `
 
 interface HandleProps {
-  origin: Position
+  origin: PositionValues
 }
 
 export const HorizontalHandle = styled.div<

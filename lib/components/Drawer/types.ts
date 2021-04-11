@@ -1,7 +1,7 @@
 import { ReactHTML } from 'react'
 import { DrawerContextValue } from './Drawer'
 import { Overflow } from '../../utility/Overflow/types'
-import { Position } from '../../utility/Position/types'
+import { PositionValues } from '../../utility/Position/types'
 
 export interface DrawerContentProps {
   /**
@@ -16,7 +16,7 @@ export interface DrawerContentProps {
    *  knows how to render margin that accounts for the drawer handle.
    * Default 'left'
    */
-  origin: Position
+  origin: PositionValues
 
   /**
    * The Content's overflow-y property; default is 'auto'
@@ -75,7 +75,7 @@ export interface StyledDrawerProps {
   /**
    *  From which side of the container the drawer originates. Default 'left'
    */
-  origin?: Position
+  origin?: PositionValues
 
   /**
    * Length of the drawer itself; defaults to 100% of the container
